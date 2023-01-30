@@ -1,0 +1,23 @@
+.nav{
+   grid-area: nav;
+   background-color: aquamarine;
+}
+
+.list{   
+   color: white;
+   padding: 15px;
+
+}
+.item{  
+   line-height: 150%; 
+   margin-bottom: 15px;
+
+}
+.link{   
+color: inherit;
+font-size: 20px;
+}
+
+.link.active{
+   color: darkgreen;
+}

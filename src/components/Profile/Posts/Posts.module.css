@@ -1,0 +1,35 @@
+
+
+.posts{
+}
+.title{
+   padding-left: 30px;
+   font-size: 20px;
+   margin-bottom: 10px;
+   font-weight: 600;
+
+}
+.form{
+   width: 100%;
+   padding: 0px 30px;
+   display: flex;
+   flex-direction: column;
+   
+}
+.input{
+   padding: 10px;
+   height: 50px;
+   margin-bottom: 10px;
+}
+.button{
+   align-self: flex-end;
+   display: flex;
+   padding: 10px 30px;
+   align-items: center;
+   justify-content: center;
+   text-transform: uppercase;
+
+}
+.list{
+   padding: 20px;
+}
