@@ -1,10 +1,10 @@
-import dialogs from './../Dialogs.module.css'
 
+import  message from "./Message.module.css"
 
 const MessageItem = (props) => {
     return (
-        <li className={dialogs.MessagesItem}>
-            <div className={dialogs.MessagesContent}>{props.message}</div>
+        <li className={message.item}>
+            <div className={message.content}>{props.message}</div>
         </li>
     )
 }

@@ -1,0 +1,41 @@
+
+.item {
+    text-align: center;
+    padding: 10px;
+    margin-bottom: 10px;
+    letter-spacing: 1.3px;
+    color: #2b0848;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.avatar {
+    position: relative;
+    flex: 0 0 40px;
+    height: 40px;
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.avatar img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+}
+
+.person {
+    flex: 1 1 auto;
+    padding: 10px 40px;
+    background-color: #e3c7ad;
+    font-size: 16px;
+    text-transform: uppercase;
+    font-weight: 600;
+    color: inherit;
+    border-radius: 5px;
+    overflow: hidden;
+}
+

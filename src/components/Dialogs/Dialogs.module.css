@@ -1,51 +1,38 @@
-.wrapper{
-
+.wrapper {
+   height: 100%;
 }
 
-.columns{
+.columns {
     display: flex;
+    height: 100%;
+
 }
 
-.columnDialogs{
+.columnDialogs {
     flex: 0 0 30%;
-
 }
 
-.dialogList{
+.dialogList {
     padding: 20px;
 
 }
-.dialogItem{
-    text-align: center;
-    padding: 10px;
-    margin-bottom: 10px;
-    background-color: #e3c7ad;
-    letter-spacing: 1.3px;
-    color: #2b0848;
-}
-.dialogPerson{
-
-    font-size: 16px;
-    text-transform: uppercase;
-    font-weight: 600;
-    color: inherit;
-}
 
 
-
-.columnMessages{
+.columnMessages {
+    height: 100%;
     flex: 0 0 70%;
-
+    background-color: #9a7ec4;
+    display: flex;
+    flex-direction: column;
 }
-.MessagesList{
+
+.messagesList {
     padding: 20px;
+    flex: 1 1 auto;
 }
-.MessagesItem{
-    margin-bottom: 10px;
-    background: #91d5bf;
-    padding: 10px 30px;
 
+.form{
 }
-.MessagesContent{
 
-}
+
+

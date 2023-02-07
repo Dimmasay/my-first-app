@@ -1,0 +1,29 @@
+.wrapper {
+    width: 100%;
+    padding: 15px;
+}
+
+.form {
+    display: flex;
+    gap: 10px;
+}
+
+.textInput {
+    flex: 1 1 auto;
+    height: 150px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 10px;
+    padding-right: 30px;
+    font-size: 18px;
+    resize: none;
+    line-height: 150%;
+    letter-spacing: 1.3px;
+
+}
+
+.button {
+    flex: 0 0 120px;
+    align-self: flex-start;
+    padding: 15px 30px;
+}

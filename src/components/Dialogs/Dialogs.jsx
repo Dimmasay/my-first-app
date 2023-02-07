@@ -1,15 +1,17 @@
 import dialogs from './Dialogs.module.css'
 import MessageItem from "./Message/Message";
 import DialogItem from "./Dialog/Dialog";
+import MessageForm from "./MessageForm/MessageForm";
+import {currentTextMessage} from "../../redux/state";
 
 
 const Dialogs = (props) => {
 
-    let currentMessages = props.messagesData.map((message) => {
+    let currentMessages = props.dialogsData.messages.map((message) => {
         return (<MessageItem message={message.message} id={message.id}/>)
     })
-    let currentDialogs = props.dialogsData.map((dialog) => {
-        return (<DialogItem name={dialog.name} id={dialog.id}/>)
+    let currentDialogs = props.dialogsData.dialogs.map((dialog) => {
+        return (<DialogItem name={dialog.name} id={dialog.id} avatar={dialog.avatar}/>)
     })
 
     return (
@@ -21,10 +23,15 @@ const Dialogs = (props) => {
                     </ul>
                 </div>
                 <div className={dialogs.columnMessages}>
-                    <ul className={dialogs.MessagesList}>
+                    <ul className={dialogs.messagesList}>
                         {currentMessages}
-
                     </ul>
+                        <MessageForm
+                            className={dialogs.form}
+                            newMessageText={props.dialogsData.newMessageText}
+                            addMessage={props.addMessage}
+                            currentTextMessage={props.currentTextMessage}
+                        />
                 </div>
             </div>
         </div>
