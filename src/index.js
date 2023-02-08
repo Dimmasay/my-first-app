@@ -1,10 +1,34 @@
 import reportWebVitals from './reportWebVitals';
-import state from './redux/state'
-import {rerenderEntireThree} from "./render";
+import store from './redux/state'
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+import './index.css';
+import './null.css';
+import App from './App';
 
 
-rerenderEntireThree(state)
 
+const root = ReactDOM.createRoot(document.getElementById('root'));
+export let rerenderEntireThree = (state) => {
+
+debugger
+    root.render(
+
+        <React.StrictMode>
+
+            <App stateData={store.getState()}
+                 addPost={store.addPost.bind(store)}
+                 addMessage={store.addMessage.bind(store)}
+                 currentTextPost={store.currentTextPost.bind(store)}
+                 currentTextMessage={store.currentTextMessage.bind(store)}
+            />
+        </React.StrictMode>
+    );
+}
+
+
+rerenderEntireThree(store.getState())
+store.watcher(rerenderEntireThree)
 
 
 // If you want to start measuring performance in your app, pass a function
