@@ -1,3 +1,11 @@
+//Action Type
+import reducerDialogs from "./reducerDialogs";
+import reducerPosts from "./reducerPosts";
+import reducerFriends from "./reducerFriends";
+
+
+
+
 let store = {
     _rerenderEntireThree() {
         console.log('state changed')
@@ -82,43 +90,13 @@ let store = {
     },
 
     dispatch(action){
-        console.log('hi')
-    },
-    addPost(postText) {
+        reducerDialogs(this._state.dialogsPage, action)
+        reducerPosts(this._state.dialogsPage, action)
+        reducerFriends(this._state.friends, action)
 
-        let newPost = {
-            message: this._state.postsPage.newPostText,
-            like: 0,
-            id: 4,
-        };
-        this._state.postsPage.posts.push(newPost)
-        this._state.postsPage.newPostText = ''
         this._rerenderEntireThree(this._state)
-
     },
 
-    currentTextPost(text) {
-        this._state.postsPage.newPostText = text
-        this._rerenderEntireThree(this._state)
-
-    },
-
-    addMessage() {
-        let newMessage = {
-            message: this._state.dialogsPage.newMessageText,
-            id: 6
-        }
-        this._state.dialogsPage.messages.push(newMessage)
-        this._state.dialogsPage.newMessageText = ''
-        this._rerenderEntireThree(this._state)
-
-    },
-
-    currentTextMessage(text) {
-        this._state.dialogsPage.newMessageText = text
-        this._rerenderEntireThree(this._state)
-
-    },
     watcher(render) {
         this._rerenderEntireThree = render
     },

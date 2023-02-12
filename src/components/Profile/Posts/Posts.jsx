@@ -1,6 +1,7 @@
 import posts from "./Posts.module.css";
 import Post from "./Post/Post";
 import React from "react";
+import {addPostCreator, currentTextPostCreator} from "../../../redux/reducerPosts";
 
 
 const Posts = (props) => {
@@ -11,14 +12,13 @@ const Posts = (props) => {
         )
     })
 
-    let newPostElement = React.createRef();
-    let onButtonClick = () => {
-        props.addPost()
 
+    let onButtonClick = () => {
+        props.dispatch(addPostCreator())
     }
-    let onChangeText = () => {
-        let text = newPostElement.current.value
-        props.currentTextPost(text)
+    let onChangeText = (event) => {
+        let text = event.target.value
+        props.dispatch(currentTextPostCreator(text))
     }
 
     return (
@@ -26,7 +26,6 @@ const Posts = (props) => {
             <div className={posts.title}>My posts</div>
             <form className={posts.form}>
                 <textarea onChange={onChangeText}
-                          ref={newPostElement}
                           className={posts.input}
                           type="text"
                           value={props.newPostText}/>

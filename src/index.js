@@ -16,11 +16,8 @@ debugger
 
         <React.StrictMode>
 
-            <App stateData={store.getState()}
-                 addPost={store.addPost.bind(store)}
-                 addMessage={store.addMessage.bind(store)}
-                 currentTextPost={store.currentTextPost.bind(store)}
-                 currentTextMessage={store.currentTextMessage.bind(store)}
+            <App stateData={state}
+                 dispatch={store.dispatch.bind(store)}
             />
         </React.StrictMode>
     );

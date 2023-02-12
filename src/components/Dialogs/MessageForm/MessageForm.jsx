@@ -1,18 +1,19 @@
 import React from "react";
 import form from "./MessageForm.module.css"
+import {addMessageCreator, currentTextMessageCreator} from "../../../redux/reducerDialogs";
 
 
 const MessageForm = (props) => {
 
-    let newMessageText = React.createRef()
+
 
     let onButtonClick = () => {
-        props.addMessage()
+        props.dispatch(addMessageCreator())
     }
 
-    let onChangeText = () =>{
-        let text = newMessageText.current.value
-        props.currentTextMessage(text)
+    let onChangeText = (event) =>{
+        let text = event.target.value
+        props.dispatch(currentTextMessageCreator(text))
 
     }
     return (
@@ -20,7 +21,6 @@ const MessageForm = (props) => {
         <form className={form.form}>
             <textarea
                 onChange={onChangeText}
-                ref={newMessageText}
                 className={form.textInput}
                 value={props.newMessageText}></textarea>
             <button

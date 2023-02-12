@@ -2,7 +2,7 @@ import dialogs from './Dialogs.module.css'
 import MessageItem from "./Message/Message";
 import DialogItem from "./Dialog/Dialog";
 import MessageForm from "./MessageForm/MessageForm";
-import {currentTextMessage} from "../../redux/state";
+
 
 
 const Dialogs = (props) => {
@@ -29,8 +29,7 @@ const Dialogs = (props) => {
                         <MessageForm
                             className={dialogs.form}
                             newMessageText={props.dialogsData.newMessageText}
-                            addMessage={props.addMessage}
-                            currentTextMessage={props.currentTextMessage}
+                            dispatch={props.dispatch}
                         />
                 </div>
             </div>
