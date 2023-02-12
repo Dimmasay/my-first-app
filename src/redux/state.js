@@ -81,6 +81,9 @@ let store = {
         return this._state
     },
 
+    dispatch(action){
+        console.log('hi')
+    },
     addPost(postText) {
 
         let newPost = {
