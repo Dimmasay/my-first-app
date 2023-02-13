@@ -1,7 +1,7 @@
 //Action Type
 import reducerDialogs from "./reducerDialogs";
 import reducerPosts from "./reducerPosts";
-import reducerFriends from "./reducerFriends";
+import reducerNavbar from "./reducerNavbar";
 
 
 
@@ -90,14 +90,14 @@ let store = {
     },
 
     dispatch(action){
-        reducerDialogs(this._state.dialogsPage, action)
-        reducerPosts(this._state.dialogsPage, action)
-        reducerFriends(this._state.friends, action)
+        this._state.dialogsPage = reducerDialogs(this._state.dialogsPage, action);
+        this._state.postsPage = reducerPosts(this._state.postsPage, action);
+        this._state.friends = reducerNavbar(this._state.friends, action);
 
         this._rerenderEntireThree(this._state)
     },
 
-    watcher(render) {
+    subscribe(render) {
         this._rerenderEntireThree = render
     },
 }

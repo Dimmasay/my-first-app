@@ -1,12 +1,12 @@
 import posts from "./Posts.module.css";
 import Post from "./Post/Post";
 import React from "react";
-import {addPostCreator, currentTextPostCreator} from "../../../redux/reducerPosts";
 
 
 const Posts = (props) => {
 
-    let currentPosts = props.posts.map((post) => {
+
+    let currentPosts = props.postsState.posts.map((post) => {
         return (
             <Post message={post.message} like={post.like} id={post.id}/>
         )
@@ -14,12 +14,13 @@ const Posts = (props) => {
 
 
     let onButtonClick = () => {
-        props.dispatch(addPostCreator())
+        props.addPost();
     }
     let onChangeText = (event) => {
         let text = event.target.value
-        props.dispatch(currentTextPostCreator(text))
+        props.changeTextBody(text)
     }
+
 
     return (
         <div className={posts}>
@@ -28,8 +29,7 @@ const Posts = (props) => {
                 <textarea onChange={onChangeText}
                           className={posts.input}
                           type="text"
-                          value={props.newPostText}/>
-
+                          value={props.postsState.newPostText}/>
                 <button onClick={onButtonClick}
                         className={posts.button}
                         type='button'>

@@ -37,7 +37,7 @@ const NavBar = (props) => {
                     <NavLink to="/friends" className={setActive}>
                         Friends
                     </NavLink>
-                    <BestFriends friends={props.friendsData}/>
+                    <BestFriends friends={props.navbar.friends}/>
                 </li>
             </ul>
         </nav>
