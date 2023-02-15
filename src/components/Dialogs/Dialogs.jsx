@@ -5,7 +5,7 @@ import MessageFormContainer from "./MessageForm/MessageFormContainer";
 
 
 const Dialogs = (props) => {
-    let stateDialogs = props.store.getState().dialogsPage
+    let stateDialogs = props.stateDialogs
     let currentMessages = stateDialogs.messages.map((message) => {
         return (<MessageItem message={message.message} id={message.id}/>)
     })
@@ -25,10 +25,7 @@ const Dialogs = (props) => {
                     <ul className={dialogs.messagesList}>
                         {currentMessages}
                     </ul>
-                    <MessageFormContainer
-                        store={props.store}
-                        stateDialogs={stateDialogs}
-                    />
+                    <MessageFormContainer/>
                 </div>
             </div>
         </div>

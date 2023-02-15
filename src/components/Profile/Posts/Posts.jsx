@@ -5,7 +5,6 @@ import React from "react";
 
 const Posts = (props) => {
 
-
     let currentPosts = props.postsState.posts.map((post) => {
         return (
             <Post message={post.message} like={post.like} id={post.id}/>
@@ -19,8 +18,8 @@ const Posts = (props) => {
     let onChangeText = (event) => {
         let text = event.target.value
         props.changeTextBody(text)
-    }
 
+    }
 
     return (
         <div className={posts}>
@@ -28,7 +27,6 @@ const Posts = (props) => {
             <form className={posts.form}>
                 <textarea onChange={onChangeText}
                           className={posts.input}
-                          type="text"
                           value={props.postsState.newPostText}/>
                 <button onClick={onButtonClick}
                         className={posts.button}
@@ -42,6 +40,5 @@ const Posts = (props) => {
         </div>
     );
 };
-
 
 export default Posts;

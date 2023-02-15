@@ -1,22 +1,26 @@
 import React from "react";
 import {addMessageCreator, currentTextMessageCreator} from "../../../redux/reducerDialogs";
 import MessageForm from "./MessageForm";
+import {connect} from "react-redux";
 
 
-const MessageFormContainer = (props) => {
-debugger
-
-    let onButtonClick = () => {
-        props.store.dispatch(addMessageCreator())
+const mapStateToProps = (state) => {
+    return {
+        stateDialogs: state.dialogsPage
     }
-
-    let onChangeText = (text) =>{
-        props.store.dispatch(currentTextMessageCreator(text))
-
-    }
-    return (
-    <MessageForm addMessage={onButtonClick} changeTextBody={onChangeText} stateDialogs={props.stateDialogs}/>    )
 }
 
+const mapDispatchToProps = (dispatch) => {
+    return {
+        addMessage: () => {
+            dispatch(addMessageCreator())
+        },
+        changeTextBody: (text) => {
+            dispatch(currentTextMessageCreator(text))
+        },
+    }
+}
+
+const MessageFormContainer = connect(mapStateToProps, mapDispatchToProps)(MessageForm)
 
 export default MessageFormContainer

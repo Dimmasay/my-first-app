@@ -5,27 +5,29 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import './null.css';
 import App from './App';
+import {Provider} from "react-redux";
 
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
-export let rerenderEntireThree = (state) => {
+
+export let rerenderEntireThree = () => {
     root.render(
         <React.StrictMode>
-            <App stateData={state}
-                 dispatch={store.dispatch.bind(store)}
-                 store={store}
-            />
+            <Provider store={store}>
+                <App stateData={store.getState()}
+                     dispatch={store.dispatch.bind(store)}
+                     store={store}
+                />
+            </Provider>
         </React.StrictMode>
     );
 }
 
 
-rerenderEntireThree(store.getState())
-
+rerenderEntireThree()
 store.subscribe(() => {
-    let state = store.getState()
-    rerenderEntireThree(state)
+    rerenderEntireThree()
 })
 
 

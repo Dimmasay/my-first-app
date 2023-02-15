@@ -59,17 +59,22 @@ let initialState = {
 //Reducer
 const reducerDialogs = (state = initialState, action) => {
     switch (action.type) {
-        case ADD_MESSAGE:
+        case ADD_MESSAGE: {
             let newMessage = {
                 message: state.newMessageText,
                 id: 6
             };
-            state.messages.push(newMessage);
-            state.newMessageText = '';
-            return state;
-        case CURRENT_TEXT_MESSAGE:
-            state.newMessageText = action.text;
-            return state;
+            let stateCopy = {...state}
+            stateCopy.messages = [...state.messages]
+            stateCopy.messages.push(newMessage);
+            stateCopy.newMessageText = '';
+            return stateCopy;
+        }
+        case CURRENT_TEXT_MESSAGE: {
+            let stateCopy = {...state}
+            stateCopy.newMessageText = action.text;
+            return stateCopy;
+        }
         default:
             return state;
     }

@@ -1,21 +1,29 @@
 import React from "react";
 import {addPostCreator, currentTextPostCreator} from "../../../redux/reducerPosts";
 import Posts from "./Posts";
+import {connect} from "react-redux";
 
+;
+let mapStateToProps = (state) => {
 
-const PostsContainer = (props) => {
-   let state = props.store.getState().postsPage
-   let onButtonClick = () => {
-        props.store.dispatch(addPostCreator())
+    return {
+        postsState: state.postsPage
     }
-    let onChangeText = (text) => {
-        props.store.dispatch(currentTextPostCreator(text))
+}
+let mapDispatchToProps = (dispatch) => {
+
+    return {
+        addPost: () => {
+            dispatch(addPostCreator())
+        },
+        changeTextBody: (text) => {
+            dispatch(currentTextPostCreator(text))
+        }
     }
 
-    return (
-        <Posts addPost={onButtonClick} changeTextBody={onChangeText} postsState={state}/>
-    );
-};
+}
 
+
+const PostsContainer = connect(mapStateToProps, mapDispatchToProps)(Posts)
 
 export default PostsContainer;
