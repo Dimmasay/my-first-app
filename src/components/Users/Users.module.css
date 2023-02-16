@@ -1,0 +1,30 @@
+.container{
+    display: flex;
+}
+.prew{
+
+}
+.button{
+  height: 50px;
+  width: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.button:hover{
+  background-color: #bccccc;
+  transition: all 0.5s ease 0s;
+}
+.body{
+  padding: 10px;
+  flex: 0 1 300px;
+  display: flex;
+  justify-content: space-between;
+
+}
+.person{
+
+}
+.location{
+
+}

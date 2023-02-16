@@ -29,10 +29,16 @@ const NavBar = (props) => {
                     </NavLink>
                 </li>
                 <li className={nav.item}>
+                    <NavLink to="/users" className={setActive}>
+                        Users
+                    </NavLink>
+                </li>
+                <li className={nav.item}>
                     <NavLink to="/settings" className={setActive}>
                         Settings
                     </NavLink>
                 </li>
+
                 <li className={`${nav.item} ${nav.itemFriend}`}>
                     <NavLink to="/friends" className={setActive}>
                         Friends
