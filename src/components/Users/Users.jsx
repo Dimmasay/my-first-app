@@ -1,32 +1,29 @@
 import style from './Users.module.css'
 import User from "./User/User";
 import axios from "axios";
-const Users = ((props) => {
+import React from "react";
 
-    const getUsers = () => {
-        if (props.users.length === 0) {
-            axios.get('https://social-network.samuraijs.com/api/1.0/users')
-                .then((response) => {
-                    props.setUsers(response.data.items)
 
-                })
-        }
+class Users extends React.Component {
+
+    componentDidMount() {
+        axios.get('https://social-network.samuraijs.com/api/1.0/users')
+            .then((response) => {
+                this.props.setUsers(response.data.items)
+            })
     }
 
-    let UserList = props.users.map((user) => {
-        debugger
-        return (<User user={user} followUser={props.followUser} unFollowUser={props.unFollowUser}/>)
-    })
+    render() {
+        let userList = this.props.users.map((user) => {
+            return (<User user={user} followUser={this.props.followUser} unFollowUser={this.props.unFollowUser}/>)
+        })
 
-    return <div className={style.container}>
-        <div className={style.userList}>
-            <button onClick={getUsers}>Get Users</button>
-            {UserList}
+        return <div className={style.container}>
+            <div className={style.userList}>
+                {userList}
+            </div>
         </div>
-    </div>
-
-})
-
-
+    }
+}
 
 export default Users
