@@ -6,10 +6,10 @@ import reducerUsers from "./reducerUsers";
 
 
 let reducers = combineReducers({
-   dialogsPage :reducerDialogs,
-   postsPage : reducerPosts,
-   navbar : reducerNavbar,
-   usersPage: reducerUsers,
+    dialogsPage: reducerDialogs,
+    postsPage: reducerPosts,
+    navbar: reducerNavbar,
+    usersPage: reducerUsers,
 })
 
 

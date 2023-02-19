@@ -1,7 +1,7 @@
 import style from "./User.module.css";
 
 const User = (props) => {
-    debugger
+
     return<div className={style.container}>
         <div className={style.prew}>
             <div className={style.image}>
