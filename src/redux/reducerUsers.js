@@ -12,7 +12,7 @@ let initialState = {
 
 //Reducer
 const reducerUsers = (state = initialState, action) => {
-    debugger
+
     switch (action.type) {
 
         case FOLLOW:
@@ -23,6 +23,7 @@ const reducerUsers = (state = initialState, action) => {
                         return {...user, followed: true}
                     }
                     return user
+
                 })
             }
         case UNFOLLOW:
@@ -36,8 +37,8 @@ const reducerUsers = (state = initialState, action) => {
                 })
             }
         case SET_USERS:
-            // return {...state, users: [...state.users, ...action.userList]}
-            return {...state, users: [ ...action.userList]}
+            return {...state, users: [...state.users, ...action.userList]}
+            // return {...state, users: [ ...action.userList]}
 
         default:
             return state

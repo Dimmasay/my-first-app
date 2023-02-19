@@ -3,7 +3,7 @@ import Users from "./Users";
 import {followAC, setUsersAC, unfollowAC} from "../../redux/reducerUsers";
 
 const mapStateToProps = (state) => {
-debugger
+
     return {
         users: state.usersPage.users
     }
