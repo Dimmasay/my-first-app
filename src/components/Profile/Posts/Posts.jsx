@@ -5,7 +5,7 @@ import React from "react";
 
 const Posts = (props) => {
 
-    let currentPosts = props.postsState.posts.map((post) => {
+    let currentPosts = props.profilePage.posts.map((post) => {
         return (
             <Post message={post.message} like={post.like} id={post.id}/>
         )
@@ -27,7 +27,7 @@ const Posts = (props) => {
             <form className={posts.form}>
                 <textarea onChange={onChangeText}
                           className={posts.input}
-                          value={props.postsState.newPostText}/>
+                          value={props.profilePage.newPostText}/>
                 <button onClick={onButtonClick}
                         className={posts.button}
                         type='button'>

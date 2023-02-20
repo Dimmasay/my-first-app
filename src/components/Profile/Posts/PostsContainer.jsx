@@ -1,5 +1,5 @@
 import React from "react";
-import {addPostCreator, currentTextPostCreator} from "../../../redux/reducerPosts";
+import {addPostCreator, currentTextPostCreator} from "../../../redux/reducerProfile";
 import Posts from "./Posts";
 import {connect} from "react-redux";
 
@@ -7,7 +7,7 @@ import {connect} from "react-redux";
 let mapStateToProps = (state) => {
 
     return {
-        postsState: state.postsPage
+        profilePage: state.profilePage
     }
 }
 let mapDispatchToProps = (dispatch) => {

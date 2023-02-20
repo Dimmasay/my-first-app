@@ -1,6 +1,6 @@
 //Action Type
 import reducerDialogs from "./reducerDialogs";
-import reducerPosts from "./reducerPosts";
+import reducerPosts from "./reducerProfile";
 import reducerNavbar from "./reducerNavbar";
 
 

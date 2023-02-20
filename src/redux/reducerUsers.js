@@ -1,9 +1,10 @@
 //Action Types
 const FOLLOW = 'FOLLOW'
 const UNFOLLOW = 'UNFOLLOW'
-const SET_USERS = 'SET-USERS'
-const SET_TOTAL_COUNT = 'SET-TOTAL-COUNT'
-const SET_CURRENT_PAGE = 'SET-CURRENT-PAGE'
+const SET_USERS = 'SET_USERS'
+const SET_TOTAL_COUNT = 'SET_TOTAL_COUNT'
+const SET_CURRENT_PAGE = 'SET_CURRENT_PAGE'
+const TOGGLE_IS_FETCHING = 'TOGGLE_IS_FETCHING'
 
 
 //Starting value state
@@ -15,6 +16,8 @@ let initialState = {
     count: 10,
     //Current page
     page: 1,
+
+    isFetching: true,
 
 }
 
@@ -52,6 +55,9 @@ const reducerUsers = (state = initialState, action) => {
         case SET_TOTAL_COUNT:
             return {...state, totalCount: action.itemsList}
 
+        case TOGGLE_IS_FETCHING:
+            return {...state, isFetching: action.isFetchingValue}
+
 
         default:
             return state
@@ -73,6 +79,9 @@ export const setCurrentPageAC = (page) => {
 }
 export const setTotalCountAC = (items) => {
     return {type: SET_TOTAL_COUNT, itemsList: items}
+}
+export const isFetchingToggleAC = (toggle) => {
+    return {type: TOGGLE_IS_FETCHING, isFetchingValue: toggle}
 }
 
 

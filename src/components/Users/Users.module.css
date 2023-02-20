@@ -3,7 +3,8 @@
 }
 
 .userList {
-
+    display: flex;
+    flex-direction: column;
 }
 
 .pagesList {
@@ -11,6 +12,7 @@
     margin-bottom: 20px;
     flex-wrap: wrap;
     row-gap: 15px;
+
 }
 
 .pageNumber {

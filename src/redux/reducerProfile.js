@@ -1,17 +1,12 @@
 //Action Type
-const ADD_POST = 'ADD-POST'
-const CURRENT_TEXT_POST = 'CURRENT-TEXT-POST'
+const ADD_POST = 'ADD_POST'
+const CURRENT_TEXT_POST = 'CURRENT_TEXT_POST'
+const SET_USER = 'SET_USER'
 
-//Action Creator
-export const addPostCreator = () => {
-    return {type: ADD_POST}
-}
-export const currentTextPostCreator = (text) => {
-    return {type: CURRENT_TEXT_POST, text: text}
-}
 
 //Starting value state
 let initialState = {
+    user: null,
     posts: [
         {message: 'Hi, how are you?', like: 15, id: 1},
         {message: 'Happy birthday!!!', like: 15, id: 2},
@@ -21,9 +16,10 @@ let initialState = {
 }
 
 //Reducer
-const reducerPosts = (state=initialState, action) => {
+const reducerProfile = (state = initialState, action) => {
+
     switch (action.type) {
-        case ADD_POST:{
+        case ADD_POST: {
             let newPost = {
                 message: state.newPostText,
                 like: 0,
@@ -35,15 +31,29 @@ const reducerPosts = (state=initialState, action) => {
             stateCopy.newPostText = '';
             return stateCopy
         }
-        case CURRENT_TEXT_POST:{
+        case CURRENT_TEXT_POST: {
             let stateCopy = {...state}
             stateCopy.newPostText = action.text
             return stateCopy
         }
+        case SET_USER:
+            return {...state, user:  action.currentUser}
+
         default:
             return state
     }
-
 }
 
-export default reducerPosts
+//Action Creator
+export const addPostCreator = () => {
+    return {type: ADD_POST}
+}
+export const currentTextPostCreator = (text) => {
+    return {type: CURRENT_TEXT_POST, text: text}
+}
+export const setUserProfileAC = (user) => {
+    return {type: SET_USER, currentUser: user}
+}
+
+
+export default reducerProfile

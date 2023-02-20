@@ -10,6 +10,7 @@ import Settings from "./components/Settings/Settings";
 import {BrowserRouter, Routes, Route} from "react-router-dom";
 import Friends from "./components/Friends/Friends";
 import UsersContainer from "./components/Users/UsersContainer";
+import ProfileContainer from "./components/Profile/ProfileContainer";
 
 
 const App = (props) => {
@@ -20,8 +21,7 @@ const App = (props) => {
                 <NavBar navbar={props.stateData.navbar}/>
                 <div className='app-wrapper-content'>
                     <Routes>
-                        <Route path='/profile'
-                               element={<Profile/>}/>
+                        <Route path='/profile/*' element={<ProfileContainer/>}/>
                         <Route path='/dialogs/*'
                                element={<Dialogs
                                    stateDialogs={props.store.getState().dialogsPage}
