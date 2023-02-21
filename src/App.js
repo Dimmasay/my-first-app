@@ -21,7 +21,7 @@ const App = (props) => {
                 <NavBar navbar={props.stateData.navbar}/>
                 <div className='app-wrapper-content'>
                     <Routes>
-                        <Route path='/profile/*' element={<ProfileContainer/>}/>
+                        <Route path='/profile/:userId' element={<ProfileContainer/>}/>
                         <Route path='/dialogs/*'
                                element={<Dialogs
                                    stateDialogs={props.store.getState().dialogsPage}

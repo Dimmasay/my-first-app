@@ -6,10 +6,10 @@ import {NavLink} from "react-router-dom";
 
 
 const Users = (props) => {
-
     let userList = props.users.map((user) => {
+        debugger
         return (
-            <NavLink to='/profile/2'>
+            <NavLink to={`/profile/${user.id}`}>
                 <User user={user} followUser={props.followUser} unFollowUser={props.unFollowUser}/>
             </NavLink>
         )
