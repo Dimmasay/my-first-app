@@ -2,16 +2,12 @@ import style from './Users.module.css'
 import User from "./User/User";
 import React from 'react';
 import Preloader from "../common/Preloader/Preloader";
-import {NavLink} from "react-router-dom";
 
 
 const Users = (props) => {
     let userList = props.users.map((user) => {
-        debugger
         return (
-            <NavLink to={`/profile/${user.id}`}>
-                <User user={user} followUser={props.followUser} unFollowUser={props.unFollowUser}/>
-            </NavLink>
+            <User user={user} followUser={props.followUser} unFollowUser={props.unFollowUser}/>
         )
     })
 
@@ -37,7 +33,7 @@ const Users = (props) => {
             <div className={style.pagesList}>
                 {pageNumberList}
             </div>
-                <Preloader isFetching={props.isFetching}/>
+            <Preloader isFetching={props.isFetching}/>
             {userList}
         </div>
     </div>

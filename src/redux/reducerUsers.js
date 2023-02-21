@@ -23,8 +23,8 @@ let initialState = {
 
 //Reducer
 const reducerUsers = (state = initialState, action) => {
-
     switch (action.type) {
+
 
         case FOLLOW:
             return {
@@ -37,6 +37,7 @@ const reducerUsers = (state = initialState, action) => {
                 })
             }
         case UNFOLLOW:
+
             return {
                 ...state,
                 users: state.users.map((user) => {

@@ -16,7 +16,9 @@ class UsersContainerApi extends React.Component {
 
     componentDidMount() {
         this.props.isFetchingToggle(true)
-        axios.get(`https://social-network.samuraijs.com/api/1.0/users?count=${this.props.count}&page=${this.props.page}`)
+        axios.get(`https://social-network.samuraijs.com/api/1.0/users?count=${this.props.count}&page=${this.props.page}`, {
+            withCredentials: true
+        })
             .then((response) => {
                 this.props.setUsers(response.data.items)
                 this.props.setItems(response.data.totalCount)
@@ -28,7 +30,9 @@ class UsersContainerApi extends React.Component {
 
         this.props.setPage(page)
         this.props.isFetchingToggle(true)
-        axios.get(`https://social-network.samuraijs.com/api/1.0/users?count=${this.props.count}&page=${page}`)
+        axios.get(`https://social-network.samuraijs.com/api/1.0/users?count=${this.props.count}&page=${page}`, {
+            withCredentials: true
+        })
             .then((response) => {
                 this.props.setUsers(response.data.items)
                 this.props.isFetchingToggle(false)
@@ -36,11 +40,12 @@ class UsersContainerApi extends React.Component {
     }
 
     render() {
+
         return (
             <Users
                 users={this.props.users}
                 followUser={this.props.followUser}
-                unfollowUser={this.props.unFollowUser}
+                unFollowUser={this.props.unFollowUser}
                 totalCount={this.props.totalCount}
                 count={this.props.count}
                 page={this.props.page}
