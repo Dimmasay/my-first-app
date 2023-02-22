@@ -7,7 +7,11 @@ import Preloader from "../common/Preloader/Preloader";
 const Users = (props) => {
     let userList = props.users.map((user) => {
         return (
-            <User user={user} followUser={props.followUser} unFollowUser={props.unFollowUser}/>
+            <User user={user}
+                  followUser={props.followUser}
+                  unFollowUser={props.unFollowUser}
+                  followProcess={props.followProcess}
+                  followingProcessOnUsers={props.followingProcessOnUsers}/>
         )
     })
 

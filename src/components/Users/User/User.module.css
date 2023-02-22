@@ -15,12 +15,17 @@
 
 }
 .image{
+    cursor: pointer;
     height: 100px;
     width: 100px;
     border-radius: 50%;
     overflow: hidden;
     position: relative;
     margin-bottom: 10px;
+}
+.image :hover{
+    transform: scale(1.1);
+
 }
 .image img {
     position: absolute;
@@ -37,10 +42,10 @@
     align-items: center;
     justify-content: center;
 }
-.button:hover{
-    background-color: #bccccc;
-    transition: all 0.5s ease 0s;
-}
+/*.button:hover{*/
+/*    background-color: #bccccc;*/
+/*    transition: all 0.5s ease 0s;*/
+/*}*/
 .body{
     background-color: rgba(169, 169, 169, 0.23);
     padding: 10px;

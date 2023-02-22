@@ -1,6 +1,6 @@
 import {connect} from "react-redux";
 import {
-    followAC,
+    followAC, followProcessAC,
     isFetchingToggleAC,
     setCurrentPageAC,
     setTotalCountAC,
@@ -8,20 +8,18 @@ import {
     unfollowAC
 } from "../../redux/reducerUsers";
 import React from "react";
-import axios from "axios";
 import Users from "./Users";
+import {getUsersAPI} from "../../api/api";
 
 
 class UsersContainerApi extends React.Component {
 
     componentDidMount() {
         this.props.isFetchingToggle(true)
-        axios.get(`https://social-network.samuraijs.com/api/1.0/users?count=${this.props.count}&page=${this.props.page}`, {
-            withCredentials: true
-        })
-            .then((response) => {
-                this.props.setUsers(response.data.items)
-                this.props.setItems(response.data.totalCount)
+        getUsersAPI(this.props.count, this.props.page)
+            .then((data) => {
+                this.props.setUsers(data.items)
+                this.props.setItems(data.totalCount)
                 this.props.isFetchingToggle(false)
             })
     }
@@ -30,11 +28,9 @@ class UsersContainerApi extends React.Component {
 
         this.props.setPage(page)
         this.props.isFetchingToggle(true)
-        axios.get(`https://social-network.samuraijs.com/api/1.0/users?count=${this.props.count}&page=${page}`, {
-            withCredentials: true
-        })
-            .then((response) => {
-                this.props.setUsers(response.data.items)
+        getUsersAPI(this.props.count, page)
+            .then((data) => {
+                this.props.setUsers(data.items)
                 this.props.isFetchingToggle(false)
             })
     }
@@ -51,6 +47,8 @@ class UsersContainerApi extends React.Component {
                 page={this.props.page}
                 setPageNumber={this.setPageNumber}
                 isFetching={this.props.isFetching}
+                followProcess={this.props.followProcess}
+                followingProcessOnUsers={this.props.followingProcessOnUsers}
             />
         )
     }
@@ -63,6 +61,7 @@ const mapStateToProps = (state) => {
         count: state.usersPage.count,
         page: state.usersPage.page,
         isFetching: state.usersPage.isFetching,
+        followingProcessOnUsers:state.usersPage.followingProcessOnUsers
     }
 }
 
@@ -75,7 +74,8 @@ const UsersContainer = connect(mapStateToProps, {
     setUsers: setUsersAC,
     setPage: setCurrentPageAC,
     setItems: setTotalCountAC,
-    isFetchingToggle: isFetchingToggleAC
+    isFetchingToggle: isFetchingToggleAC,
+    followProcess: followProcessAC
 })(UsersContainerApi)
 
 export default UsersContainer

@@ -5,6 +5,7 @@ const SET_USERS = 'SET_USERS'
 const SET_TOTAL_COUNT = 'SET_TOTAL_COUNT'
 const SET_CURRENT_PAGE = 'SET_CURRENT_PAGE'
 const TOGGLE_IS_FETCHING = 'TOGGLE_IS_FETCHING'
+const FOLLOWING_PROCESS = 'FOLLOWING_PROCESS'
 
 
 //Starting value state
@@ -19,13 +20,14 @@ let initialState = {
 
     isFetching: true,
 
+    followingProcessOnUsers: [],
+
+
 }
 
 //Reducer
 const reducerUsers = (state = initialState, action) => {
     switch (action.type) {
-
-
         case FOLLOW:
             return {
                 ...state,
@@ -59,6 +61,16 @@ const reducerUsers = (state = initialState, action) => {
         case TOGGLE_IS_FETCHING:
             return {...state, isFetching: action.isFetchingValue}
 
+        case FOLLOWING_PROCESS:
+            return {
+                ...state,
+                followingProcessOnUsers:
+                    action.status
+                        ? [...state.followingProcessOnUsers, action.id]
+                        : [...state.followingProcessOnUsers.filter((id) => {
+                            return (id === !action.id)
+                        })]
+            }
 
         default:
             return state
@@ -83,6 +95,9 @@ export const setTotalCountAC = (items) => {
 }
 export const isFetchingToggleAC = (toggle) => {
     return {type: TOGGLE_IS_FETCHING, isFetchingValue: toggle}
+}
+export const followProcessAC = (value, userId) => {
+    return {type: FOLLOWING_PROCESS, status: value, id: userId}
 }
 
 

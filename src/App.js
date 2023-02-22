@@ -39,4 +39,3 @@ const App = (props) => {
 export default App;
 
 
-export const ApiKey = "b2f42c92-a12d-4024-aa96-79bbcb29ee47"
