@@ -7,9 +7,12 @@
 
 }
 .prew{
+    padding: 0 20px;
     flex: 0 1 150px;
     display: flex;
-    flex-direction: column;
+    /*flex-direction: column;*/
+    flex-direction: row-reverse;
+    column-gap: 15px;
     align-items: center;
     justify-content: center;
 
@@ -21,7 +24,6 @@
     border-radius: 50%;
     overflow: hidden;
     position: relative;
-    margin-bottom: 10px;
 }
 .image :hover{
     transform: scale(1.1);

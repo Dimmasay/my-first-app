@@ -11,19 +11,22 @@ const Users = (props) => {
                   followUser={props.followUser}
                   unFollowUser={props.unFollowUser}
                   followProcess={props.followProcess}
-                  followingProcessOnUsers={props.followingProcessOnUsers}/>
+                  followingProcessOnUsers={props.followingProcessOnUsers}
+                  followUserThunk={props.followUserThunk}
+                  unFollowUserThunk={props.unFollowUserThunk}
+            />
         )
     })
 
     let totalPages = Math.ceil(props.totalCount / props.count)
-    let pageNumberArray = []
+    let arrayPageNumbers = []
 
     //50 = totalPages !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
     for (let p = 1; p <= 50; ++p) {
-        pageNumberArray.push(p)
+        arrayPageNumbers.push(p)
     }
 
-    let pageNumberList = pageNumberArray.map((page => {
+    let pageNumberList = arrayPageNumbers.map((page => {
         return (<div
             className={props.page === page ? `${style.pageNumber} ${style.pageNumberSelected}` : style.pageNumber}
             onClick={(e) => {

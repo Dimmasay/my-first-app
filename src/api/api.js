@@ -1,45 +1,48 @@
 import axios from "axios";
 
-const baseUrl = 'https://social-network.samuraijs.com/api/1.0/'
-const baseKey = "b2f42c92-a12d-4024-aa96-79bbcb29ee47"
+
+const instance = axios.create({
+    withCredentials: true,
+    baseURL: 'https://social-network.samuraijs.com/api/1.0/',
+    headers: {
+        "API-KEY": "b2f42c92-a12d-4024-aa96-79bbcb29ee47"
+    }
+
+})
+
+export const usersAPI = {
+    getUsers: (count, page = 1) => {
+        return instance.get(`users?count=${count}&page=${page}`)
+            .then((response) => {
+                return response.data
+            })
+    },
+    unFollowUser: (userId) => {
+        return instance.post(`follow/${userId}`)
+            .then((response) => {
+                return response.data
+            })
+    },
+    followUser: (userId) => {
+        return instance.delete(`follow/${userId}`)
+            .then((response) => {
+                return response.data
+            })
+    },
 
 
-export const getUsersAPI = (count, page) => {
-    return axios.get(`${baseUrl}users?count=${count}&page=${page}`, {
-        withCredentials: true
-    }).then((response)=>{
-        return response.data
-    })
 }
+export const profileAPI = {
+    getProfileUser: (userId) => {
+         return instance.get(`/profile/${userId}`)
+    },
 
-export const followUserAPI = (userId) => {
-
-    return axios.delete(`${baseUrl}follow/${userId}`, {
-        withCredentials: true,
-        headers: {
-            "API-KEY": baseKey
-        }
-    }).then((response)=>{
-        return response.data
-    })
 }
+export const getAuthMe = () => {
+    return instance.get(`auth/me`)
+        .then((response) => {
 
-export const unFollowUserAPI = (userId) => {
-
-    return axios.post(`${baseUrl}follow/${userId}`, {},{
-        withCredentials: true,
-        headers: {
-            "API-KEY": baseKey
-        }
-    }).then((response)=>{
-        return response.data
-    })
-}
-
-export const getAuthMeAPI = ( ) => {
-    return axios.get(`${baseUrl}auth/me`, {
-        withCredentials: true})
-        .then((response)=>{
             return response.data
+
         })
 }

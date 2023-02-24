@@ -1,7 +1,5 @@
 import style from "./User.module.css";
 import {NavLink} from "react-router-dom";
-import {followUserAPI, unFollowUserAPI} from "../../../api/api";
-
 
 const User = (props) => {
 
@@ -14,30 +12,12 @@ const User = (props) => {
             {props.user.followed
                 ? <button
                     disabled={props.followingProcessOnUsers.includes(props.user.id)}
-                    onClick={() => {
-                        props.followProcess(true, props.user.id)
-                        followUserAPI(props.user.id)
-                            .then((data) => {
-                                if (data.resultCode === 0) {
-                                    props.unFollowUser(props.user.id)
-                                }
-                                props.followProcess(false, props.user.id)
-                            })
-                    }}
+                    onClick={() => {props.followUserThunk(props.user.id)}}
                     className={style.button}
                     type='button'>Unfollow</button>
                 : <button
                     disabled={props.followingProcessOnUsers.includes(props.user.id)}
-                    onClick={() => {
-                        props.followProcess(true, props.user.id)
-                        unFollowUserAPI(props.user.id)
-                            .then((data) => {
-                                if (data.resultCode === 0) {
-                                    props.followUser(props.user.id)
-                                }
-                                props.followProcess(false, props.user.id)
-                            })
-                    }}
+                    onClick={() => { props.unFollowUserThunk(props.user.id)}}
                     className={style.button}
                     type='button'>Follow</button>
             }
@@ -48,8 +28,8 @@ const User = (props) => {
                 <div className={style.status}>{props.user.status}</div>
             </div>
             <div className={style.location}>
-                <div className={style.country}>{'props.user.location.country'}</div>
-                <div className={style.city}>{'props.user.location.city'}</div>
+                <div className={style.country}>{'country'}</div>
+                <div className={style.city}>{'city'}</div>
             </div>
         </div>
     </div>

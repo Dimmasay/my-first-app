@@ -1,4 +1,6 @@
 //Action Type
+import {profileAPI} from "../api/api";
+
 const ADD_POST = 'ADD_POST'
 const CURRENT_TEXT_POST = 'CURRENT_TEXT_POST'
 const SET_USER = 'SET_USER'
@@ -45,15 +47,21 @@ const reducerProfile = (state = initialState, action) => {
 }
 
 //Action Creator
-export const addPostCreator = () => {
-    return {type: ADD_POST}
+export const addPostCreator = () => ({type: ADD_POST})
+export const currentTextPostCreator = (text) => ({type: CURRENT_TEXT_POST, text: text})
+export const setUserProfileAC = (user) => ({type: SET_USER, currentUser: user})
+
+//Thunk Creator
+export const getProfileUserTC = (userId) => {
+    return (dispatch) => {
+        profileAPI.getProfileUser(userId)
+            .then((response) => {
+                debugger
+                dispatch(setUserProfileAC(response.data))
+            })
+    }
 }
-export const currentTextPostCreator = (text) => {
-    return {type: CURRENT_TEXT_POST, text: text}
-}
-export const setUserProfileAC = (user) => {
-    return {type: SET_USER, currentUser: user}
-}
+
 
 
 export default reducerProfile

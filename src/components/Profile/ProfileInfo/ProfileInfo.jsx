@@ -2,7 +2,6 @@ import style from "./ProfileInfo.module.css";
 import preloader from '../../../files/images/preloader.gif'
 
 const ProfileInfo = (props) => {
-
     if (!props.user) {
         return (
             <div className={style.preloader}>

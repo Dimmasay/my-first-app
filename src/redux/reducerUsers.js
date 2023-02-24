@@ -1,4 +1,6 @@
 //Action Types
+import {usersAPI, usersAPI as userAPI} from "../api/api";
+
 const FOLLOW = 'FOLLOW'
 const UNFOLLOW = 'UNFOLLOW'
 const SET_USERS = 'SET_USERS'
@@ -52,6 +54,7 @@ const reducerUsers = (state = initialState, action) => {
         case SET_USERS:
             return {...state, users: action.userList}
 
+
         case SET_CURRENT_PAGE:
             return {...state, page: action.currentPage}
 
@@ -67,7 +70,7 @@ const reducerUsers = (state = initialState, action) => {
                 followingProcessOnUsers:
                     action.status
                         ? [...state.followingProcessOnUsers, action.id]
-                        : [...state.followingProcessOnUsers.filter((id) => {
+                        : [state.followingProcessOnUsers.filter((id) => {
                             return (id === !action.id)
                         })]
             }
@@ -78,27 +81,61 @@ const reducerUsers = (state = initialState, action) => {
 }
 
 //Action Creators
-export const followAC = (userId) => {
-    return {type: FOLLOW, id: userId}
-}
-export const unfollowAC = (userId) => {
-    return {type: UNFOLLOW, id: userId}
-}
-export const setUsersAC = (users) => {
-    return {type: SET_USERS, userList: users}
-}
-export const setCurrentPageAC = (page) => {
-    return {type: SET_CURRENT_PAGE, currentPage: page}
-}
-export const setTotalCountAC = (items) => {
-    return {type: SET_TOTAL_COUNT, itemsList: items}
-}
-export const isFetchingToggleAC = (toggle) => {
-    return {type: TOGGLE_IS_FETCHING, isFetchingValue: toggle}
-}
-export const followProcessAC = (value, userId) => {
-    return {type: FOLLOWING_PROCESS, status: value, id: userId}
-}
+export const followAC = (userId) => {return {type: FOLLOW, id: userId}}
+export const unfollowAC = (userId) => ({type: UNFOLLOW, id: userId})
+export const setUsersAC = (users) => ({type: SET_USERS, userList: users})
+export const setCurrentPageAC = (page) => ({type: SET_CURRENT_PAGE, currentPage: page})
+export const setTotalCountAC = (items) => ({type: SET_TOTAL_COUNT, itemsList: items})
+export const isFetchingToggleAC = (toggle) => ({type: TOGGLE_IS_FETCHING, isFetchingValue: toggle})
+export const followProcessAC = (value, userId) => ({type: FOLLOWING_PROCESS, status: value, id: userId})
 
+
+//Thunk Creators
+export const setUsersTC = (count, page) => {
+    return (dispatch) => {
+        dispatch(isFetchingToggleAC(true))
+        userAPI.getUsers(count, page)
+            .then((data) => {
+                dispatch(setUsersAC(data.items))
+                dispatch(setTotalCountAC(data.totalCount))
+                dispatch(isFetchingToggleAC(false))
+            })
+    }
+}
+export const setPageTC = (count, page) => {
+    return (dispatch) => {
+        dispatch(setCurrentPageAC(page))
+        dispatch(isFetchingToggleAC(true))
+        userAPI.getUsers(count, page)
+            .then((data) => {
+                dispatch(setUsersAC(data.items))
+                dispatch(isFetchingToggleAC(false))
+            })
+    }
+}
+export const followUserTC = (userId) =>{
+    return (dispatch) => {
+        dispatch(followProcessAC(true, userId))
+        usersAPI.followUser(userId)
+            .then((data) => {
+                if (data.resultCode === 0) {
+                    dispatch(unfollowAC(userId))
+                }
+                dispatch(followProcessAC(false, userId))
+            })
+    }
+}
+export const unFollowUserTC = (userId) =>{
+    return (dispatch) => {
+        dispatch(followProcessAC(true, userId))
+        usersAPI.unFollowUser(userId)
+            .then((data) => {
+                if (data.resultCode === 0) {
+                    dispatch(followAC(userId))
+                }
+                dispatch(followProcessAC(false, userId))
+            })
+    }
+}
 
 export default reducerUsers

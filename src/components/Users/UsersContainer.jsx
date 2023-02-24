@@ -1,42 +1,27 @@
 import {connect} from "react-redux";
 import {
-    followAC, followProcessAC,
+    followAC, followProcessAC, followUserTC,
     isFetchingToggleAC,
-    setCurrentPageAC,
+    setCurrentPageAC, setPageTC,
     setTotalCountAC,
-    setUsersAC,
-    unfollowAC
+    setUsersTC,
+    unfollowAC, unFollowUserTC
 } from "../../redux/reducerUsers";
 import React from "react";
 import Users from "./Users";
-import {getUsersAPI} from "../../api/api";
+
+
 
 
 class UsersContainerApi extends React.Component {
-
     componentDidMount() {
-        this.props.isFetchingToggle(true)
-        getUsersAPI(this.props.count, this.props.page)
-            .then((data) => {
-                this.props.setUsers(data.items)
-                this.props.setItems(data.totalCount)
-                this.props.isFetchingToggle(false)
-            })
+         this.props.setUsersThunk(this.props.count, this.props.page)
     }
-
     setPageNumber = (page) => {
-
-        this.props.setPage(page)
-        this.props.isFetchingToggle(true)
-        getUsersAPI(this.props.count, page)
-            .then((data) => {
-                this.props.setUsers(data.items)
-                this.props.isFetchingToggle(false)
-            })
+        this.props.setPageThunk(this.props.count, page)
     }
 
     render() {
-
         return (
             <Users
                 users={this.props.users}
@@ -49,6 +34,8 @@ class UsersContainerApi extends React.Component {
                 isFetching={this.props.isFetching}
                 followProcess={this.props.followProcess}
                 followingProcessOnUsers={this.props.followingProcessOnUsers}
+                followUserThunk={this.props.followUserThunk}
+                unFollowUserThunk={this.props.unFollowUserThunk}
             />
         )
     }
@@ -69,13 +56,16 @@ const UsersContainer = connect(mapStateToProps, {
     // followUser: (userId) => {
     //     dispatch(followAC(userId))
     // },
-    followUser: followAC,
+    followAC: followAC,
     unFollowUser: unfollowAC,
-    setUsers: setUsersAC,
-    setPage: setCurrentPageAC,
-    setItems: setTotalCountAC,
+    setCurrentPage: setCurrentPageAC,
+    setTotalCount: setTotalCountAC,
     isFetchingToggle: isFetchingToggleAC,
-    followProcess: followProcessAC
+    followProcess: followProcessAC,
+    setUsersThunk: setUsersTC,
+    setPageThunk: setPageTC,
+    followUserThunk: followUserTC,
+    unFollowUserThunk: unFollowUserTC,
 })(UsersContainerApi)
 
 export default UsersContainer
