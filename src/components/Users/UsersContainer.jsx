@@ -9,6 +9,7 @@ import {
 } from "../../redux/reducerUsers";
 import React from "react";
 import Users from "./Users";
+import {Navigate} from "react-router-dom";
 
 
 
@@ -22,6 +23,10 @@ class UsersContainerApi extends React.Component {
     }
 
     render() {
+        if(!this.props.isAuth){
+            return <Navigate to='/login'/>
+        }
+
         return (
             <Users
                 users={this.props.users}
@@ -48,7 +53,8 @@ const mapStateToProps = (state) => {
         count: state.usersPage.count,
         page: state.usersPage.page,
         isFetching: state.usersPage.isFetching,
-        followingProcessOnUsers:state.usersPage.followingProcessOnUsers
+        followingProcessOnUsers:state.usersPage.followingProcessOnUsers,
+        isAuth:state.auth.isAuth
     }
 }
 

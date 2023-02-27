@@ -10,8 +10,10 @@ const TOGGLE_IS_FETCHING = 'TOGGLE_IS_FETCHING'
 const FOLLOWING_PROCESS = 'FOLLOWING_PROCESS'
 
 
+
 //Starting value state
 let initialState = {
+
     users: [],
     //Total items
     totalCount: 0,
@@ -54,7 +56,6 @@ const reducerUsers = (state = initialState, action) => {
         case SET_USERS:
             return {...state, users: action.userList}
 
-
         case SET_CURRENT_PAGE:
             return {...state, page: action.currentPage}
 
@@ -75,19 +76,25 @@ const reducerUsers = (state = initialState, action) => {
                         })]
             }
 
+
+
         default:
             return state
     }
 }
 
 //Action Creators
-export const followAC = (userId) => {return {type: FOLLOW, id: userId}}
+export const followAC = (userId) => {
+    return {type: FOLLOW, id: userId}
+}
 export const unfollowAC = (userId) => ({type: UNFOLLOW, id: userId})
-export const setUsersAC = (users) => ({type: SET_USERS, userList: users})
 export const setCurrentPageAC = (page) => ({type: SET_CURRENT_PAGE, currentPage: page})
+
 export const setTotalCountAC = (items) => ({type: SET_TOTAL_COUNT, itemsList: items})
 export const isFetchingToggleAC = (toggle) => ({type: TOGGLE_IS_FETCHING, isFetchingValue: toggle})
 export const followProcessAC = (value, userId) => ({type: FOLLOWING_PROCESS, status: value, id: userId})
+export const setUsersAC = (users) => ({type: SET_USERS, userList: users})
+
 
 
 //Thunk Creators
@@ -113,7 +120,7 @@ export const setPageTC = (count, page) => {
             })
     }
 }
-export const followUserTC = (userId) =>{
+export const followUserTC = (userId) => {
     return (dispatch) => {
         dispatch(followProcessAC(true, userId))
         usersAPI.followUser(userId)
@@ -125,7 +132,7 @@ export const followUserTC = (userId) =>{
             })
     }
 }
-export const unFollowUserTC = (userId) =>{
+export const unFollowUserTC = (userId) => {
     return (dispatch) => {
         dispatch(followProcessAC(true, userId))
         usersAPI.unFollowUser(userId)
@@ -137,5 +144,7 @@ export const unFollowUserTC = (userId) =>{
             })
     }
 }
+
+
 
 export default reducerUsers

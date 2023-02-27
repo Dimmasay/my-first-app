@@ -17,6 +17,12 @@ export const usersAPI = {
                 return response.data
             })
     },
+    getMyFollowers: (count, page) => {
+        return instance.get(`users?friend=true&count=${count}&page=${page}`)
+            .then((response) => {
+                return response.data
+            })
+    },
     unFollowUser: (userId) => {
         return instance.post(`follow/${userId}`)
             .then((response) => {

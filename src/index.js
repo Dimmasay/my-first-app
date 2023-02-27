@@ -15,7 +15,8 @@ export let rerenderEntireThree = () => {
     root.render(
         <React.StrictMode>
             <Provider store={store}>
-                <App stateData={store.getState()}
+                <App
+                    stateData={store.getState()}
                      dispatch={store.dispatch.bind(store)}
                      store={store}
                 />

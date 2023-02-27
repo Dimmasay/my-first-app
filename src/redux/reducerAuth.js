@@ -14,9 +14,11 @@ let initialState = {
 let reducerAuth = (state = initialState, action) => {
     switch (action.type) {
         case SET_AUTH_USER_DATA: {
-            let copy = {...state,
+            let copy = {
+                ...state,
                 ...action.data,
-                isAuth : true,}
+                isAuth: true,
+            }
             return copy
         }
         default:
@@ -26,7 +28,9 @@ let reducerAuth = (state = initialState, action) => {
 
 
 //Action Create
-export const setAuthUserDataAC = (id, login, email) => {return {type: SET_AUTH_USER_DATA, data: {id, login, email}}}
+export const setAuthUserDataAC = (id, login, email) => {
+    return {type: SET_AUTH_USER_DATA, data: {id, login, email}}
+}
 
 
 //Thunk Create
@@ -34,8 +38,10 @@ export const getAuthMeTC = () => {
     return (dispatch) => {
         getAuthMe()
             .then((data) => {
-                let {id, login, email} = data.data
-                dispatch(setAuthUserDataAC(id, login, email))
+                if (data.resultCode === 0) {
+                    let {id, login, email} = data.data
+                    dispatch(setAuthUserDataAC(id, login, email))
+                }
             })
     }
 }

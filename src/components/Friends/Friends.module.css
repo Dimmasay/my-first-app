@@ -1,24 +1,26 @@
-.header{
-   /* grid-column: span 2; */
-   grid-area: header;
-   background-color: cornflowerblue;
+.list {
+   padding: 10px;
+}
+.numberList{
+   margin-bottom: 20px;
    display: flex;
-   align-items: center;
-   justify-content: center;
-   
 }
+.number {
+   background-color: #e3c7ad;
+   font-size: 18px;
+   padding: 5px 15px;
+   cursor: pointer;
+   margin: 0px 10px;
+}
+.numberSelected {
+   background-color: #0affab;
 
-.logo{
-   position: relative;
-   height: 50px;
-   width: 100px;
 }
-.logo img{
-   position: absolute;
-   top: 0;
-   left: 0;
-   height: 100%;
-   width: 100%;
-   object-fit: contain;
+.button{
+   background-color: #743293;
+   font-size: 24px;
+   padding: 5px 15px;
+   cursor: pointer;
+   margin: 0px 10px;
+   color: white;
 }
-
