@@ -9,27 +9,33 @@
    font-weight: 600;
 
 }
-.form{
+.formWrapper{
    width: 100%;
    padding: 0px 30px;
    display: flex;
-   flex-direction: column;
-   
+   gap: 20px;
+
 }
 .input{
+   width: 100%;
    padding: 10px;
    height: 50px;
    margin-bottom: 10px;
+   height: 100%;
 }
 .button{
-   align-self: flex-end;
-   display: flex;
+   height: 100%;
    padding: 10px 30px;
    align-items: center;
-   justify-content: center;
    text-transform: uppercase;
 
 }
 .list{
    padding: 20px;
+}
+.inputBlock{
+   flex: 1 1 auto;
+}
+.buttonBlock{
+
 }

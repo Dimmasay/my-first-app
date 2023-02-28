@@ -1,5 +1,4 @@
 import './App.css';
-import Dialogs from "./components/Dialogs/Dialogs";
 import News from "./components/News/News";
 import Music from "./components/Music/Music";
 import Settings from "./components/Settings/Settings";
@@ -10,6 +9,7 @@ import HeaderContainer from "./components/Header/HeaderContainer";
 import FriendsContainer from "./components/Friends/FriendsContainer";
 import NavBarContainer from "./components/NavBar/NavBarContainer";
 import LoginContainer from "./components/Login/LoginContainer";
+import DialogsContainer from "./components/Dialogs/DialogsContainer";
 
 
 const App = (props) => {
@@ -21,8 +21,7 @@ const App = (props) => {
                 <div className='app-wrapper-content'>
                     <Routes>
                         <Route path='/profile/:userId?' element={<ProfileContainer/>}/>
-                        <Route path='/dialogs/*'
-                               element={<Dialogs stateDialogs={props.store.getState().dialogsPage}/>}/>
+                        <Route path='/dialogs/*' element={<DialogsContainer/>}/>
                         <Route path='/news' element={<News/>}/>
                         <Route path='/login' element={<LoginContainer/>}/>
                         <Route path='/music' element={<Music/>}/>

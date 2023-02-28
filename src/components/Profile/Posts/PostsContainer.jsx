@@ -1,29 +1,36 @@
 import React from "react";
-import {addPostCreator, currentTextPostCreator} from "../../../redux/reducerProfile";
-import Posts from "./Posts";
+import {addPostAC} from "../../../redux/reducerProfile";
 import {connect} from "react-redux";
-
+import Post from "./Post/Post";
+import posts from "./Posts.module.css";
+import PostsForm from "./PostsForm";
 ;
-let mapStateToProps = (state) => {
 
+const Posts = (props) => {
+
+    let currentPosts = props.profilePage.posts.map((post) => {
+        return (
+            <Post message={post.message} like={post.like} id={post.id}/>
+        )
+    })
+
+    return (
+        <div className={posts}>
+            <h2 className={posts.title}>My posts</h2>
+            <PostsForm addPostAC={props.addPostAC}/>
+            <div className={posts.list}>
+                {currentPosts}
+            </div>
+        </div>
+    );
+};
+
+let mapStateToProps = (state) => {
     return {
         profilePage: state.profilePage
     }
 }
-let mapDispatchToProps = (dispatch) => {
 
-    return {
-        addPost: () => {
-            dispatch(addPostCreator())
-        },
-        changeTextBody: (text) => {
-            dispatch(currentTextPostCreator(text))
-        }
-    }
-
-}
-
-
-const PostsContainer = connect(mapStateToProps, mapDispatchToProps)(Posts)
+const PostsContainer = connect(mapStateToProps, {addPostAC})(Posts)
 
 export default PostsContainer;

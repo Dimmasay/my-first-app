@@ -1,15 +1,5 @@
 //Action Type
-const ADD_MESSAGE = 'ADD-MESSAGE'
-const CURRENT_TEXT_MESSAGE = 'CURRENT_TEXT_MESSAGE'
-
-
-//Action Creator
-export const addMessageCreator = () => {
-    return {type: ADD_MESSAGE}
-}
-export const currentTextMessageCreator = (text) => {
-    return {type: CURRENT_TEXT_MESSAGE, text: text}
-}
+const ADD_MESSAGE = 'ADD_MESSAGE'
 
 
 //Starting value state
@@ -53,32 +43,25 @@ let initialState = {
         {message: 'Yo', id: 4},
         {message: 'ok?', id: 5},
     ],
-    newMessageText: '',
 }
 
 //Reducer
 const reducerDialogs = (state = initialState, action) => {
     switch (action.type) {
         case ADD_MESSAGE:
-            let newMessage = {
-                message: state.newMessageText,
-                id: 6
-            };
             return {
                 ...state,
-                messages: [...state.messages, newMessage],
-                newMessageText: ''
+                messages: [...state.messages, {
+                    message: action.message,
+                    id: 6
+                }]
             }
-
-        case CURRENT_TEXT_MESSAGE:
-            return {
-                ...state,
-                newMessageText: action.text
-            }
-
         default:
             return state;
     }
 }
+
+//Action Creator
+export const addMessageAC = (text) => ({type: ADD_MESSAGE, message: text})
 
 export default reducerDialogs

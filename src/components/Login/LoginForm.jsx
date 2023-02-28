@@ -12,7 +12,6 @@ const LoginForm = (props) => {
     }
 
     const submit = (state) => {
-        let jsonState = JSON.stringify(state)
         props.authLoginTC(state)
 
     }
@@ -24,9 +23,7 @@ const LoginForm = (props) => {
         <div className={style.wrapper}>
             <Formik
                 initialValues={state}
-
-                onSubmit={submit}
-            >
+                onSubmit={submit}>
                 <Form className={style.containerForm}>
                     <div className={`${style.emailBlock} ${style.input}`}>
                         <label htmlFor="emailInput">Email</label>

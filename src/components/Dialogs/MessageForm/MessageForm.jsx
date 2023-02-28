@@ -1,34 +1,35 @@
 import React from "react";
 import form from "./MessageForm.module.css"
+import {Field, Form, Formik} from "formik";
 
 
 const MessageForm = (props) => {
 
-    let onButtonClick = () => {
-        props.addMessage()
+    let currentMessage = {
+        message: '',
     }
 
-    let onChangeText = (event) => {
-        let text = event.target.value
-        props.changeTextBody(text)
-    }
+    console.log(currentMessage.message)
+    let addMessage = (currentMessage) => {
 
+        props.addMessageAC(currentMessage.message)
+    }
     return (
-        <div className={form.wrapper}>
-            <form className={form.form}>
-            <textarea
-                onChange={onChangeText}
-                className={form.textInput}
-                value={props.stateDialogs.newMessageText}></textarea>
-                <button
-                    onClick={onButtonClick}
-                    className={form.button}
-                    type='button'
-                >Send
-                </button>
-            </form>
+        <div className={form.formContainer}>
+            <Formik initialValues={currentMessage} onSubmit={addMessage}>
+                <Form className={form.form}>
+                    <div className={form.inputBlock}>
+                        <label htmlFor='inputMessage'></label>
+                        <Field id='inputMessage' name='message' type='textarea' className={form.input}/>
+                    </div>
+                    <div className={form.buttonBlock}>
+                        <button type='submit'>Send</button>
+                    </div>
+                </Form>
+            </Formik>
         </div>
     )
+
 }
 
 

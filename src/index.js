@@ -13,11 +13,7 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
     root.render(
         <React.StrictMode>
             <Provider store={store}>
-                <App
-                    stateData={store.getState()}
-                     dispatch={store.dispatch.bind(store)}
-                     store={store}
-                />
+                <App/>
             </Provider>
         </React.StrictMode>
     );

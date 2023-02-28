@@ -1,15 +1,17 @@
 import dialogs from './Dialogs.module.css'
 import MessageItem from "./Message/Message";
 import DialogItem from "./Dialog/Dialog";
-import MessageFormContainer from "./MessageForm/MessageFormContainer";
+import MessageForm from "./MessageForm/MessageForm";
+import {connect} from "react-redux";
+import {addMessageAC} from "../../redux/reducerDialogs";
 
 
-const Dialogs = (props) => {
-    let stateDialogs = props.stateDialogs
-    let currentMessages = stateDialogs.messages.map((message) => {
+const DialogsWrapper = (props) => {
+
+    let currentMessages = props.messages.map((message) => {
         return (<MessageItem message={message.message} id={message.id}/>)
     })
-    let currentDialogs = stateDialogs.dialogs.map((dialog) => {
+    let currentDialogs = props.dialogs.map((dialog) => {
         return (<DialogItem name={dialog.name} id={dialog.id} avatar={dialog.avatar}/>)
     })
 
@@ -25,12 +27,19 @@ const Dialogs = (props) => {
                     <ul className={dialogs.messagesList}>
                         {currentMessages}
                     </ul>
-                    <MessageFormContainer/>
+                    <MessageForm addMessageAC={props.addMessageAC}/>
                 </div>
             </div>
         </div>
     )
 }
-
-
-export default Dialogs
+let mapStateToProps = (state) => {
+    return {
+        messages: state.dialogsPage.messages,
+        dialogs: state.dialogsPage.dialogs
+    }
+}
+const DialogsContainer = connect(mapStateToProps,{
+    addMessageAC
+})(DialogsWrapper)
+export default DialogsContainer

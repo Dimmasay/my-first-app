@@ -2,7 +2,6 @@
 import {profileAPI} from "../api/api";
 
 const ADD_POST = 'ADD_POST'
-const CURRENT_TEXT_POST = 'CURRENT_TEXT_POST'
 const SET_USER = 'SET_USER'
 const SET_STATUS = 'SET_STATUS'
 
@@ -15,31 +14,23 @@ let initialState = {
         {message: 'Happy birthday!!!', like: 15, id: 2},
         {message: 'It`s my first post', like: 3, id: 3},
     ],
-    newPostText: '',
     status: ''
 }
 
 //Reducer
 const reducerProfile = (state = initialState, action) => {
-
     switch (action.type) {
-        case ADD_POST: {
-            let newPost = {
-                message: state.newPostText,
-                like: 0,
-                id: 4,
-            };
-            let stateCopy = {...state}
-            stateCopy.posts = [...state.posts]
-            stateCopy.posts.push(newPost)
-            stateCopy.newPostText = '';
-            return stateCopy
-        }
-        case CURRENT_TEXT_POST: {
-            let stateCopy = {...state}
-            stateCopy.newPostText = action.text
-            return stateCopy
-        }
+        case ADD_POST:
+            return {
+                ...state,
+                posts: [...state.posts,
+                    {
+                        message: action.post,
+                        like: 0,
+                        id: 4,
+                    }
+                ]
+            }
         case SET_USER:
             return {...state, user: action.currentUser}
         case SET_STATUS:
@@ -51,8 +42,7 @@ const reducerProfile = (state = initialState, action) => {
 }
 
 //Action Creator
-export const addPostCreator = () => ({type: ADD_POST})
-export const currentTextPostCreator = (text) => ({type: CURRENT_TEXT_POST, text: text})
+export const addPostAC = (text) => ({type: ADD_POST, post: text})
 export const setUserProfileAC = (user) => ({type: SET_USER, currentUser: user})
 export const setStatusAC = (status) => ({type: SET_STATUS, status: status})
 
