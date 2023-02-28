@@ -1,6 +1,61 @@
-.container{
-   padding: 50px;
-   font-size: 32px;
+.title{
+   font-size: 30px;
+   text-align: center;
+   padding-top: 20px;
+   margin-bottom: 30px;
+}
+.wrapper {
+}
+.containerForm{
+   background-color: #91d5bf;
+   margin: 0 auto;
+   max-width: 400px;
+   padding: 20px;
+   margin-bottom: 30px;
+}
+
+.input{
+   margin-bottom: 30px;
+   display: flex;
+   align-items: center;
+   justify-content: space-between;
+   font-size: 20px;
+}
+.input input{
+   font-size: 18px;
+   padding: 5px 10px;
+
+}
+.emailBlock{
+
+}
+.passwordBlock{
+
+}
+.rememberBlock{
+
+}
+.buttonBlock{
+display: flex;
+   align-items: center;
+   justify-content: center;
+}
+.buttonBlock button{
+   border-radius: 15px;
+   padding: 10px 50px;
+}
+.buttonOut {
+   display: flex;
+   align-items: center;
+   justify-content: center;
+}
+.buttonOut button{
+   color: white;
    text-transform: uppercase;
-   letter-spacing: 2px;
+   font-weight: 600;
+   letter-spacing: 3px;
+   background-color: #c76565;
+   width: 200px;
+   border-radius: 15px;
+   padding: 10px 50px;
 }

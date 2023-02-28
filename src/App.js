@@ -8,8 +8,8 @@ import UsersContainer from "./components/Users/UsersContainer";
 import ProfileContainer from "./components/Profile/ProfileContainer";
 import HeaderContainer from "./components/Header/HeaderContainer";
 import FriendsContainer from "./components/Friends/FriendsContainer";
-import Login from "./components/Login/Login";
 import NavBarContainer from "./components/NavBar/NavBarContainer";
+import LoginContainer from "./components/Login/LoginContainer";
 
 
 const App = (props) => {
@@ -24,7 +24,7 @@ const App = (props) => {
                         <Route path='/dialogs/*'
                                element={<Dialogs stateDialogs={props.store.getState().dialogsPage}/>}/>
                         <Route path='/news' element={<News/>}/>
-                        <Route path='/login' element={<Login/>}/>
+                        <Route path='/login' element={<LoginContainer/>}/>
                         <Route path='/music' element={<Music/>}/>
                         <Route path='/settings' element={<Settings/>}/>
                         <Route path='/friends' element={<FriendsContainer/>}/>

@@ -52,11 +52,27 @@ export const profileAPI = {
     },
 
 }
-export const getAuthMe = () => {
-    return instance.get(`auth/me`)
-        .then((response) => {
+export const authMeAPI = {
 
-            return response.data
+    getAuthMe: () => {
+        return instance.get(`auth/me`)
+            .then((response) => {
+                return response.data
 
-        })
+            })
+    },
+    postAuthLogin: (object) => {
+
+        return instance.post(`auth/login`, {...object})
+            .then((response) => {
+                return response.data
+            })
+    },
+    deleteAuthLogin: (object) => {
+
+        return instance.delete(`auth/login`)
+            .then((response) => {
+                return response.data
+            })
+    }
 }

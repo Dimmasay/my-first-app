@@ -1,8 +1,10 @@
 //Action Type
-import {getAuthMe} from "../api/api";
+import {authMeAPI} from "../api/api";
 
 const SET_AUTH_USER_DATA = 'SET_AUTH_USER_DATA'
 const NOT_AUTH = 'NOT_AUTH'
+const GO_OUT = 'GO_OUT'
+
 
 
 let initialState = {
@@ -27,6 +29,15 @@ let reducerAuth = (state = initialState, action) => {
                 isAuth: false,
             }
         }
+        case GO_OUT: {
+            return {
+                ...state,
+                id: null,
+                login: null,
+                email: null,
+            }
+        }
+
 
         default:
             return state
@@ -39,14 +50,14 @@ export const setAuthUserDataAC = (id, login, email) => {
     return {type: SET_AUTH_USER_DATA, data: {id, login, email}}
 }
 export const setNotAuthAC = () => ({type: NOT_AUTH})
-
+export const goOutAC = () => ({type: GO_OUT})
 
 
 
 //Thunk Create
 export const getAuthMeTC = () => {
     return (dispatch) => {
-        getAuthMe()
+        authMeAPI.getAuthMe()
             .then((data) => {
                 if (data.resultCode === 0) {
                     let {id, login, email} = data.data
@@ -54,6 +65,25 @@ export const getAuthMeTC = () => {
                 } else if (data.resultCode === 1) {
                         dispatch(setNotAuthAC())
                 }
+            })
+    }
+}
+export const authLoginTC = (object) => {
+    return (dispatch) => {
+        authMeAPI.postAuthLogin(object)
+            .then((data) => {
+                dispatch(getAuthMeTC())
+            })
+    }
+}
+export const authOutLoginTC = (object) => {
+    return (dispatch) => {
+
+        authMeAPI.deleteAuthLogin(object)
+            .then((data) => {
+                dispatch(goOutAC())
+                console.log(data)
+
             })
     }
 }
