@@ -2,25 +2,32 @@
 import {getAuthMe} from "../api/api";
 
 const SET_AUTH_USER_DATA = 'SET_AUTH_USER_DATA'
+const NOT_AUTH = 'NOT_AUTH'
 
 
 let initialState = {
     id: null,
     login: null,
     email: null,
-    isAuth: false,
+    isAuth: true,
 }
 
 let reducerAuth = (state = initialState, action) => {
     switch (action.type) {
         case SET_AUTH_USER_DATA: {
-            let copy = {
+            return {
                 ...state,
                 ...action.data,
                 isAuth: true,
             }
-            return copy
         }
+        case NOT_AUTH: {
+            return {
+                ...state,
+                isAuth: false,
+            }
+        }
+
         default:
             return state
     }
@@ -31,6 +38,9 @@ let reducerAuth = (state = initialState, action) => {
 export const setAuthUserDataAC = (id, login, email) => {
     return {type: SET_AUTH_USER_DATA, data: {id, login, email}}
 }
+export const setNotAuthAC = () => ({type: NOT_AUTH})
+
+
 
 
 //Thunk Create
@@ -41,6 +51,8 @@ export const getAuthMeTC = () => {
                 if (data.resultCode === 0) {
                     let {id, login, email} = data.data
                     dispatch(setAuthUserDataAC(id, login, email))
+                } else if (data.resultCode === 1) {
+                        dispatch(setNotAuthAC())
                 }
             })
     }

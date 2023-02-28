@@ -9,12 +9,13 @@ import {
 } from "../../redux/reducerUsers";
 import React from "react";
 import Users from "./Users";
-import {Navigate} from "react-router-dom";
+import {withAuthRedirect} from "../../hoc/withAuthRedirect";
+import {compose} from "redux";
 
 
 
 
-class UsersContainerApi extends React.Component {
+class WrapperUsers extends React.Component {
     componentDidMount() {
          this.props.setUsersThunk(this.props.count, this.props.page)
     }
@@ -23,10 +24,6 @@ class UsersContainerApi extends React.Component {
     }
 
     render() {
-        if(!this.props.isAuth){
-            return <Navigate to='/login'/>
-        }
-
         return (
             <Users
                 users={this.props.users}
@@ -58,21 +55,22 @@ const mapStateToProps = (state) => {
     }
 }
 
-const UsersContainer = connect(mapStateToProps, {
-    // followUser: (userId) => {
-    //     dispatch(followAC(userId))
-    // },
-    followAC: followAC,
-    unFollowUser: unfollowAC,
-    setCurrentPage: setCurrentPageAC,
-    setTotalCount: setTotalCountAC,
-    isFetchingToggle: isFetchingToggleAC,
-    followProcess: followProcessAC,
-    setUsersThunk: setUsersTC,
-    setPageThunk: setPageTC,
-    followUserThunk: followUserTC,
-    unFollowUserThunk: unFollowUserTC,
-})(UsersContainerApi)
 
+
+const UsersContainer = compose(
+    connect(mapStateToProps, {
+        followAC: followAC,
+        unFollowUser: unfollowAC,
+        setCurrentPage: setCurrentPageAC,
+        setTotalCount: setTotalCountAC,
+        isFetchingToggle: isFetchingToggleAC,
+        followProcess: followProcessAC,
+        setUsersThunk: setUsersTC,
+        setPageThunk: setPageTC,
+        followUserThunk: followUserTC,
+        unFollowUserThunk: unFollowUserTC,
+    }),
+    withAuthRedirect
+)(WrapperUsers)
 export default UsersContainer
 

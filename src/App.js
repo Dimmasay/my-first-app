@@ -1,6 +1,4 @@
-import logo from './logo.svg';
 import './App.css';
-import NavBar from './components/NavBar/NavBar';
 import Dialogs from "./components/Dialogs/Dialogs";
 import News from "./components/News/News";
 import Music from "./components/Music/Music";
@@ -11,6 +9,7 @@ import ProfileContainer from "./components/Profile/ProfileContainer";
 import HeaderContainer from "./components/Header/HeaderContainer";
 import FriendsContainer from "./components/Friends/FriendsContainer";
 import Login from "./components/Login/Login";
+import NavBarContainer from "./components/NavBar/NavBarContainer";
 
 
 const App = (props) => {
@@ -18,10 +17,10 @@ const App = (props) => {
         <BrowserRouter>
             <div className='app-wrapper'>
                 <HeaderContainer/>
-                <NavBar navbar={props.stateData.navbar}/>
+                <NavBarContainer />
                 <div className='app-wrapper-content'>
                     <Routes>
-                        <Route path='/profile/:userId' element={<ProfileContainer/>}/>
+                        <Route path='/profile/:userId?' element={<ProfileContainer/>}/>
                         <Route path='/dialogs/*'
                                element={<Dialogs stateDialogs={props.store.getState().dialogsPage}/>}/>
                         <Route path='/news' element={<News/>}/>

@@ -1,5 +1,7 @@
 import style from "./ProfileInfo.module.css";
 import preloader from '../../../files/images/preloader.gif'
+import ProfileStatus from "../ProfileStatus";
+import {updateStatusTC} from "../../../redux/reducerProfile";
 
 const ProfileInfo = (props) => {
     if (!props.user) {
@@ -22,6 +24,7 @@ const ProfileInfo = (props) => {
                 </div>
                 <div className={style.body}>
                     <div className={style.name}>{props.user.fullName}</div>
+                    <ProfileStatus status={props.status} updateStatusTC={props.updateStatusTC}/>
                     <div className={style.list}>
                         <div className={style.about}>
                             <div className={style.aboutName}>About Me:</div>
@@ -39,7 +42,6 @@ const ProfileInfo = (props) => {
                             <div className={style.contactsInstagram}>
                                 <div className={style.siteName}>Instagram:</div>
                                 <a className={style.siteValue} href="#">{props.user.contacts.instagram ?props.user.contacts.instagram :'...'}</a>
-
                             </div>
                         </div>
                     </div>

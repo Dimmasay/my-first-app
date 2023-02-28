@@ -3,7 +3,6 @@ import style from './Friends.module.css'
 
 
 const Friends = (props) => {
-    debugger
     let userList = props.followers.map((user) => {
         return (
             <Friend user={user}/>

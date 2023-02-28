@@ -10,8 +10,6 @@ import {Provider} from "react-redux";
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
-
-export let rerenderEntireThree = () => {
     root.render(
         <React.StrictMode>
             <Provider store={store}>
@@ -23,13 +21,7 @@ export let rerenderEntireThree = () => {
             </Provider>
         </React.StrictMode>
     );
-}
 
-
-rerenderEntireThree()
-store.subscribe(() => {
-    rerenderEntireThree()
-})
 
 
 // If you want to start measuring performance in your app, pass a function

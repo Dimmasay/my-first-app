@@ -2,6 +2,8 @@ import {connect} from "react-redux";
 import React from "react";
 import Friends from "./Friends";
 import {setCurrentPageTC, setMyFollowersTC} from "../../redux/reducerFriends";
+import {compose} from "redux";
+import {withAuthRedirect} from "../../hoc/withAuthRedirect";
 
 class FriendsWrapper extends React.Component {
     componentDidMount = () => {
@@ -25,9 +27,12 @@ const mapStateToProps = (state) => {
     }
 }
 
-const FriendsContainer = connect(mapStateToProps, {
-    setMyFollowersTC,
-    setCurrentPageTC,
 
-})(FriendsWrapper)
+const FriendsContainer = compose(
+    connect(mapStateToProps, {
+        setMyFollowersTC,
+        setCurrentPageTC,
+    }),
+    withAuthRedirect
+)(FriendsWrapper)
 export default FriendsContainer

@@ -2,3 +2,25 @@
 .profile__wrapper{
 
 }
+
+.statusBlock{
+
+    font-size: 18px;
+    display: flex;
+    margin-bottom: 20px;
+    gap: 30px;
+}
+
+.blockInput{
+    font-size: 18px;
+    padding: 5px 10px;
+
+    cursor: pointer;
+
+
+}
+.blockText{
+    cursor: pointer;
+
+
+}
