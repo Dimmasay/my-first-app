@@ -5,10 +5,8 @@ class ProfileStatus extends React.Component {
     state = {
         status: this.props.status,
         editMode: false
-
     }
     activeMode = () => {
-        // console.log('this', this)
         this.setState({
             editMode: true
         })
@@ -18,28 +16,23 @@ class ProfileStatus extends React.Component {
             editMode: false
         })
         this.props.updateStatusTC(this.state.status)
-        // alert(this.props.status)
-        alert(this.state.status)
     }
     onChangeText = (e) => {
         this.setState({
             status: e.currentTarget.value
         })
-
     }
 
-    componentDidUpdate(prevProps, prevState) {
-        if (this.state.status !== this.props.status){
-            this.setState({
-                status: this.props.status
-            })
-        }
-
+    componentDidUpdate(prevProps, prevState, snapshot) {
+        if (prevProps.status !== this.props.status){
+                    this.setState({
+                        status: this.props.status
+                    })
+                }
     }
+
 
     render() {
-        console.log(this.state)
-
         return (
             <div className={style.statusBlock}>
                 <div className={style.blockText}>

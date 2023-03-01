@@ -1,7 +1,7 @@
 import profile from "./Profile.module.css";
 import ProfileInfo from "./ProfileInfo/ProfileInfo";
 import PostsContainer from "./Posts/PostsContainer";
-import {updateStatusTC} from "../../redux/reducerProfile";
+
 
 const Profile = (props) => {
 

@@ -11,7 +11,7 @@ let initialState = {
     id: null,
     login: null,
     email: null,
-    isAuth: true,
+    isAuth: false,
 }
 
 let reducerAuth = (state = initialState, action) => {
@@ -35,6 +35,7 @@ let reducerAuth = (state = initialState, action) => {
                 id: null,
                 login: null,
                 email: null,
+                isAuth: false,
             }
         }
 

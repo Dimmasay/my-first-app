@@ -9,7 +9,6 @@ class LoginWrapper extends React.Component {
     render() {
         return (
             <div>
-                <h2 className={style.title}>Login Form</h2>
                 <LoginForm {...this.props}/>
             </div>
         )
@@ -19,7 +18,7 @@ class LoginWrapper extends React.Component {
 
 const mapStateToProps = (state) => {
     return {
-
+        isAuth: state.auth.isAuth
     }
 }
 

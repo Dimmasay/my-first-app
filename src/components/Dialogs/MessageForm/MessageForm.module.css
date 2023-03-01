@@ -10,9 +10,10 @@
 }
 
 .inputBlock {
+    position: relative;
     flex: 1 1 auto;
-    height: 80px;
-    padding-top: 10px;
+    height: 100px;
+    padding-top: 20px;
     padding-bottom: 10px;
     padding-left: 10px;
     padding-right: 30px;
@@ -22,12 +23,27 @@
     letter-spacing: 1.3px;
 
 }
+.input.error{
+    border: 3px red solid;
+}
+
 .input{
+    border: none;
+    font-size: 18px;
+    line-height: 150%;
+    overflow: hidden;
     padding: 10px;
     width: 100%;
-    /*resize: none;*/
-
+    resize: none;
     height: 100%;
+}
+
+.errorMessage{
+    position: absolute;
+    top: 0;
+    left: 0;
+    color: red;
+    font-size: 14px;
 }
 
 .buttonBlock {

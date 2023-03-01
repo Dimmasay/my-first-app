@@ -1,61 +1,100 @@
-.title{
-   font-size: 30px;
-   text-align: center;
-   padding-top: 20px;
-   margin-bottom: 30px;
-}
-.wrapper {
-}
-.containerForm{
-   background-color: #91d5bf;
-   margin: 0 auto;
-   max-width: 400px;
-   padding: 20px;
-   margin-bottom: 30px;
+.title {
+    font-size: 30px;
+    text-align: center;
+    padding-top: 20px;
+    margin-bottom: 30px;
 }
 
-.input{
-   margin-bottom: 30px;
-   display: flex;
-   align-items: center;
-   justify-content: space-between;
-   font-size: 20px;
+.container {
+    background-color: #91d5bf;
+    margin: 0 auto;
+    max-width: 400px;
+    padding: 20px;
+    margin-bottom: 30px;
 }
-.input input{
-   font-size: 18px;
-   padding: 5px 10px;
+
+.block {
+    margin-bottom: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 20px;
+}
+
+.email {
+    position: relative;
+}
+
+.password {
+    position: relative;
+}
+
+.remember {
 
 }
-.emailBlock{
 
+.button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
-.passwordBlock{
 
+.button button {
+    border-radius: 15px;
+    padding: 10px 50px;
 }
-.rememberBlock{
 
+.input {
+    font-size: 18px;
+    padding: 5px 10px;
 }
-.buttonBlock{
-display: flex;
-   align-items: center;
-   justify-content: center;
+
+.input.error {
+    border: 2px red solid;
 }
-.buttonBlock button{
-   border-radius: 15px;
-   padding: 10px 50px;
+
+.errorEmail {
+    position: absolute;
+    top: 0;
+    left: 0;
+    font-size: 12px;
+    color: red;
 }
+
+.errorPassword {
+    position: absolute;
+    top: 0;
+    left: 0;
+    font-size: 12px;
+    color: red;
+}
+
+.image {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 50px;
+}
+
+.image img {
+    width: 200px;
+    height: 200px;
+}
+
 .buttonOut {
-   display: flex;
-   align-items: center;
-   justify-content: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
-.buttonOut button{
-   color: white;
-   text-transform: uppercase;
-   font-weight: 600;
-   letter-spacing: 3px;
-   background-color: #c76565;
-   width: 200px;
-   border-radius: 15px;
-   padding: 10px 50px;
+
+.buttonOut button {
+    color: white;
+    text-transform: uppercase;
+    font-weight: 600;
+    letter-spacing: 3px;
+    background-color: #c76565;
+    width: 200px;
+    border-radius: 15px;
+    padding: 10px 50px;
 }
+

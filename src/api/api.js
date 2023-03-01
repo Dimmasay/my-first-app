@@ -62,14 +62,13 @@ export const authMeAPI = {
             })
     },
     postAuthLogin: (object) => {
-
         return instance.post(`auth/login`, {...object})
             .then((response) => {
                 return response.data
+
             })
     },
-    deleteAuthLogin: (object) => {
-
+    deleteAuthLogin: () => {
         return instance.delete(`auth/login`)
             .then((response) => {
                 return response.data
