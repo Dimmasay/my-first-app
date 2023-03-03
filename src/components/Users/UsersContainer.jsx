@@ -11,6 +11,14 @@ import React from "react";
 import Users from "./Users";
 import {withAuthRedirect} from "../../hoc/withAuthRedirect";
 import {compose} from "redux";
+import {
+    getCount,
+    getFollowingProcessOnUsers, getIsAuth,
+    getIsFetching,
+    getPage,
+    getTotalCount,
+    getUsers, getUsersSelector
+} from "../../redux/redux-selectors";
 
 
 
@@ -43,15 +51,26 @@ class WrapperUsers extends React.Component {
     }
 }
 
+// const mapStateToProps = (state) => {
+//     return {
+//         users: state.usersPage.users,
+//         totalCount: state.usersPage.totalCount,
+//         count: state.usersPage.count,
+//         page: state.usersPage.page,
+//         isFetching: state.usersPage.isFetching,
+//         followingProcessOnUsers:state.usersPage.followingProcessOnUsers,
+//         isAuth:state.auth.isAuth
+//     }
+// }
 const mapStateToProps = (state) => {
     return {
-        users: state.usersPage.users,
-        totalCount: state.usersPage.totalCount,
-        count: state.usersPage.count,
-        page: state.usersPage.page,
-        isFetching: state.usersPage.isFetching,
-        followingProcessOnUsers:state.usersPage.followingProcessOnUsers,
-        isAuth:state.auth.isAuth
+        users: getUsersSelector(state),
+        totalCount: getTotalCount(state),
+        count: getCount(state),
+        page: getPage(state),
+        isFetching: getIsFetching(state),
+        followingProcessOnUsers: getFollowingProcessOnUsers(state),
+        isAuth: getIsAuth(state),
     }
 }
 
