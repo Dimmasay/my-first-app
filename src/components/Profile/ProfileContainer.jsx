@@ -10,8 +10,12 @@ class ContainerWrapper extends React.Component {
 
     componentDidMount() {
         let userId = this.props.match.userId    //"userId "this name taken from App, path='/profile/:userId'
+        if (!userId){
+            userId = this.props.id
+        }
         this.props.getStatusTC(userId)
         this.props.getProfileUserThunk(userId)
+
 
     }
 
@@ -24,6 +28,7 @@ let mapStateToProps = (state) => {
     return {
         user: state.profilePage.user,
         status: state.profilePage.status,
+        id:state.auth.id
     }
 }
 

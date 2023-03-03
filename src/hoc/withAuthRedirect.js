@@ -4,11 +4,11 @@ import {Navigate} from "react-router-dom";
 
 export const withAuthRedirect = (Component) => {
     class RedirectComponent extends React.Component {
-        render (){
-            if(!this.props.isAuth){
-                return <Navigate to='/login'/>
-            }
-            return (<Component {...this.props}/>)
+        render() {
+            return ((this.props.isAuth)
+                    ? <Component {...this.props}/>
+                    : <Navigate to='/login'/>
+            )
         }
 
 
@@ -16,7 +16,9 @@ export const withAuthRedirect = (Component) => {
 
     let mapStateToProps = (state) => {
         return {
-            isAuth: state.auth.isAuth
+            isAuth: state.auth.isAuth,
+            initialized: state.app.initialized
+
         }
     }
     const ConnectedRedirectComponent = connect(mapStateToProps, {})(RedirectComponent)

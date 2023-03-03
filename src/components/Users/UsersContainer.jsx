@@ -58,6 +58,7 @@ const mapStateToProps = (state) => {
 
 
 const UsersContainer = compose(
+
     connect(mapStateToProps, {
         followAC: followAC,
         unFollowUser: unfollowAC,
@@ -70,7 +71,7 @@ const UsersContainer = compose(
         followUserThunk: followUserTC,
         unFollowUserThunk: unFollowUserTC,
     }),
-    withAuthRedirect
+    withAuthRedirect,
 )(WrapperUsers)
 export default UsersContainer
 

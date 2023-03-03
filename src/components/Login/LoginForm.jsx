@@ -3,20 +3,18 @@ import React from "react";
 import {Formik, Field, Form} from 'formik';
 import * as Yup from "yup";
 
-import {Navigate} from "react-router-dom";
 
 
 const LoginForm = (props) => {
-
     let state = {
         email: '',
         password: '',
         rememberMe: false,
     }
 
-    const submit = (state) => {
-        props.authLoginTC(state)
-
+    const submit = (state, onSubmitProps) => {
+        props.authLoginTC(state, onSubmitProps.setStatus, onSubmitProps.setSubmitting)
+        onSubmitProps.setSubmitting(true);
     }
     const goOut = () => {
         props.authOutLoginTC()
@@ -40,7 +38,7 @@ const LoginForm = (props) => {
                     onSubmit={submit}
                     validationSchema={validationSchema}
                 >
-                    {({errors, touched}) => {
+                    {({errors, touched, status, isValid}) => {
 
                         let hasErrorEmail = errors.email && touched.email
                         let hasErrorPassword = errors.password && touched.password
@@ -72,8 +70,10 @@ const LoginForm = (props) => {
                                     />
                                 </div>
                                 <div className={style.button}>
-                                    <button type="submit">Submit</button>
+
+                                    <button disabled={!isValid} type="submit">Submit</button>
                                 </div>
+                                <div className={style.errorForm}>{status}</div>
                             </Form>
                         )
                     }}

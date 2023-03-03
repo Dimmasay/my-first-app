@@ -1,9 +1,7 @@
-import style from './Login.module.css'
-
 import {connect} from "react-redux";
 import React from "react";
 import LoginForm from "./LoginForm";
-import {authLoginTC, authOutLoginTC, goOutAC} from "../../redux/reducerAuth";
+import {authLoginTC, authOutLoginTC,} from "../../redux/reducerAuth";
 
 class LoginWrapper extends React.Component {
     render() {

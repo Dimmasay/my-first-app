@@ -6,7 +6,6 @@ const NOT_AUTH = 'NOT_AUTH'
 const GO_OUT = 'GO_OUT'
 
 
-
 let initialState = {
     id: null,
     login: null,
@@ -23,12 +22,12 @@ let reducerAuth = (state = initialState, action) => {
                 isAuth: true,
             }
         }
-        case NOT_AUTH: {
-            return {
-                ...state,
-                isAuth: false,
-            }
-        }
+        // case NOT_AUTH: {
+        //     return {
+        //         ...state,
+        //         isAuth: false,
+        //     }
+        // }
         case GO_OUT: {
             return {
                 ...state,
@@ -50,41 +49,42 @@ let reducerAuth = (state = initialState, action) => {
 export const setAuthUserDataAC = (id, login, email) => {
     return {type: SET_AUTH_USER_DATA, data: {id, login, email}}
 }
-export const setNotAuthAC = () => ({type: NOT_AUTH})
+// export const setNotAuthAC = () => ({type: NOT_AUTH})
 export const goOutAC = () => ({type: GO_OUT})
-
 
 
 //Thunk Create
 export const getAuthMeTC = () => {
     return (dispatch) => {
-        authMeAPI.getAuthMe()
+          return authMeAPI.getAuthMe()
             .then((data) => {
                 if (data.resultCode === 0) {
                     let {id, login, email} = data.data
                     dispatch(setAuthUserDataAC(id, login, email))
-                } else if (data.resultCode === 1) {
-                        dispatch(setNotAuthAC())
                 }
+                // else if (data.resultCode === 1) {
+                //     dispatch(setNotAuthAC())
+                // }
             })
     }
 }
-export const authLoginTC = (object) => {
+export const authLoginTC = (object, setStatus, setSubmitting) => {
     return (dispatch) => {
         authMeAPI.postAuthLogin(object)
             .then((data) => {
-                dispatch(getAuthMeTC())
+                if (data.resultCode === 0) {
+                    dispatch(getAuthMeTC())
+                } else { setStatus(data.messages) };
+
+                setSubmitting(false);
             })
     }
 }
-export const authOutLoginTC = (object) => {
+export const authOutLoginTC = () => {
     return (dispatch) => {
-
-        authMeAPI.deleteAuthLogin(object)
-            .then((data) => {
+        authMeAPI.deleteAuthLogin()
+            .then(() => {
                 dispatch(goOutAC())
-                console.log(data)
-
             })
     }
 }

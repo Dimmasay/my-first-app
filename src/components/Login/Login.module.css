@@ -85,6 +85,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    margin-bottom: 10px;
 }
 
 .buttonOut button {
@@ -96,5 +97,13 @@
     width: 200px;
     border-radius: 15px;
     padding: 10px 50px;
+}
+
+.errorForm{
+    padding-top: 15px;
+    text-align: center;
+    color: red;
+    font-weight: 600;
+
 }
 
