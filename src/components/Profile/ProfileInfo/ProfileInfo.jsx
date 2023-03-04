@@ -2,6 +2,7 @@ import style from "./ProfileInfo.module.css";
 import preloader from '../../../files/images/preloader.gif'
 import ProfileStatus from "../ProfileStatus";
 import {updateStatusTC} from "../../../redux/reducerProfile";
+import ProfileStatusWithHooks from "../ProfileStatusWithHooks";
 
 const ProfileInfo = (props) => {
     if (!props.user) {
@@ -24,7 +25,7 @@ const ProfileInfo = (props) => {
                 </div>
                 <div className={style.body}>
                     <div className={style.name}>{props.user.fullName}</div>
-                    <ProfileStatus status={props.status} updateStatusTC={props.updateStatusTC}/>
+                    <ProfileStatusWithHooks status={props.status} updateStatusTC={props.updateStatusTC}/>
                     <div className={style.list}>
                         <div className={style.about}>
                             <div className={style.aboutName}>About Me:</div>
