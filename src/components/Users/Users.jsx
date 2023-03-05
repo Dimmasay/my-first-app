@@ -2,46 +2,28 @@ import style from './Users.module.css'
 import User from "./User/User";
 import React from 'react';
 import Preloader from "../common/Preloader/Preloader";
+import Pagination from "../common/Pagination/Pagination";
 
 
 const Users = (props) => {
-    let userList = props.users.map((user) => {
-        return (
-            <User user={user}
-                  followUser={props.followUser}
-                  unFollowUser={props.unFollowUser}
-                  followProcess={props.followProcess}
-                  followingProcessOnUsers={props.followingProcessOnUsers}
-                  followUserThunk={props.followUserThunk}
-                  unFollowUserThunk={props.unFollowUserThunk}
-            />
+
+    let usersList = props.users.map((user) => {
+        return (<User user={user}
+                      followingProcessOnUsers={props.followingProcessOnUsers}
+                      followUserTC={props.followUserTC}
+                      unFollowUserTC={props.unFollowUserTC}/>
         )
     })
-
-    let totalPages = Math.ceil(props.totalCount / props.count)
-    let arrayPageNumbers = []
-
-    //50 = totalPages !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-    for (let p = 1; p <= 50; ++p) {
-        arrayPageNumbers.push(p)
-    }
-
-    let pageNumberList = arrayPageNumbers.map((page => {
-        return (<div
-            className={props.page === page ? `${style.pageNumber} ${style.pageNumberSelected}` : style.pageNumber}
-            onClick={(e) => {
-                props.setPageNumber(page)
-            }}>{page}</div>)
-    }))
 
 
     return <div className={style.container}>
         <div className={style.userList}>
-            <div className={style.pagesList}>
-                {pageNumberList}
-            </div>
+            <Pagination totalCount={props.totalCount}
+                        count={props.count}
+                        page={props.page}
+                        setPage={props.setPage}/>
             <Preloader isFetching={props.isFetching}/>
-            {userList}
+            {usersList}
         </div>
     </div>
 

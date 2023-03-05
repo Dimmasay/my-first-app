@@ -1,5 +1,7 @@
 import Friend from "./Friend/Friend";
 import style from './Friends.module.css'
+import Pagination from "../common/Pagination/Pagination";
+import React from "react";
 
 
 const Friends = (props) => {
@@ -9,46 +11,14 @@ const Friends = (props) => {
         )
     })
 
-    let quantityPages = Math.ceil(props.totalCount / props.count)
-    let getNumbers = []
-    for (let i = 1; i <= quantityPages; i++) {
-        getNumbers.push(i)
-    }
 
-
-    let getNumbersPage = getNumbers.map((number) => {
-        return (
-            <div className={props.page === number ? `${style.number} ${style.numberSelected}` : style.number}
-                 onClick={() => {
-                     props.setPage(number)
-                 }}>
-                {number}
-            </div>)
-    })
-
-    let setNextPage = () => {
-        if(props.page < quantityPages) {
-            let currentPage = props.page + 1
-            props.setPage(currentPage)
-        }
-
-    }
-    let setPrevPage = () => {
-        if(1 < props.page) {
-            let currentPage = props.page - 1
-            props.setPage(currentPage)
-        }
-
-    }
     return (
         <div className={style.list}>
-            <div className={style.numberList}>
-                <div className={style.button}
-                onClick={setPrevPage}>Prev</div>
-                {getNumbersPage}
-                <div className={style.button}
-                onClick={setNextPage}>Next</div>
-            </div>
+            <Pagination totalCount={props.totalCount}
+                        count={props.count}
+                        page={props.page}
+                        setPage={props.setPage}
+            />
             {userList}
         </div>
     )

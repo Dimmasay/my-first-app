@@ -58,7 +58,6 @@ export const authMeAPI = {
         return instance.get(`auth/me`)
             .then((response) => {
                 return response.data
-
             })
     },
     postAuthLogin: (object) => {

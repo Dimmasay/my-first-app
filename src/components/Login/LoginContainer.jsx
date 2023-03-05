@@ -1,7 +1,7 @@
 import {connect} from "react-redux";
 import React from "react";
 import LoginForm from "./LoginForm";
-import {authLoginTC, authOutLoginTC,} from "../../redux/reducerAuth";
+import {logInTC, logOutTC,} from "../../redux/reducerAuth";
 
 class LoginWrapper extends React.Component {
     render() {
@@ -20,5 +20,5 @@ const mapStateToProps = (state) => {
     }
 }
 
-const LoginContainer = connect(mapStateToProps, {authLoginTC,authOutLoginTC})(LoginWrapper)
+const LoginContainer = connect(mapStateToProps, {logInTC,logOutTC})(LoginWrapper)
 export default LoginContainer

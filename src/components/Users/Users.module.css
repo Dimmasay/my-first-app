@@ -7,21 +7,3 @@
     flex-direction: column;
 }
 
-.pagesList {
-    display: flex;
-    margin-bottom: 20px;
-    flex-wrap: wrap;
-    row-gap: 15px;
-
-}
-
-.pageNumber {
-    font-size: 18px;
-    padding: 0px 10px;
-    cursor: pointer;
-}
-
-.pageNumberSelected {
-    font-weight: 700;
-    background-color: #c76565;
-}

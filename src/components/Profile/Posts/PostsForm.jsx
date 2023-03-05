@@ -18,18 +18,14 @@ const PostsForm = (props) => {
             .required('Required'),
     })
 
+
     return (
         <div>
-            <Formik
-                initialValues={currentTextPost}
-                onSubmit={addPost}
-                validationSchema={validationSchema}>
+            <Formik initialValues={currentTextPost} onSubmit={addPost} validationSchema={validationSchema}>
 
                 {({errors, touched}) => {
-
                     let hasError = errors.text && touched.text
-                    return (
-                        <Form>
+                    return (<Form>
                             <div className={style.formWrapper}>
                                 <div className={style.inputBlock}>
                                     <label htmlFor="textInput"></label>

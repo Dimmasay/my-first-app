@@ -4,15 +4,11 @@ import {connect} from "react-redux";
 import Post from "./Post/Post";
 import posts from "./Posts.module.css";
 import PostsForm from "./PostsForm";
-;
 
 const Posts = (props) => {
-
-    let currentPosts = props.profilePage.posts.map((post) => {
-        return (
-            <Post message={post.message} like={post.like} id={post.id}/>
-        )
-    })
+    let currentPosts = [...props.posts]
+        .reverse()
+        .map((post) =><Post message={post.message} like={post.like} id={post.id}/>)
 
     return (
         <div className={posts}>
@@ -23,11 +19,11 @@ const Posts = (props) => {
             </div>
         </div>
     );
-};
+}
 
 let mapStateToProps = (state) => {
     return {
-        profilePage: state.profilePage
+        posts: state.profilePage.posts
     }
 }
 

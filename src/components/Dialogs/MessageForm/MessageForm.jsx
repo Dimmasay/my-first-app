@@ -19,13 +19,9 @@ const MessageForm = (props) => {
 
     return (
         <div className={form.formContainer}>
-            <Formik
-                initialValues={currentMessage}
-                onSubmit={addMessage}
-                validationSchema={validationSchema}>
+            <Formik initialValues={currentMessage} onSubmit={addMessage} validationSchema={validationSchema}>
 
                 {({errors, touched}) => {
-
                     let hasError = errors.message && touched.message
 
                     return (
@@ -35,8 +31,7 @@ const MessageForm = (props) => {
                                 <Field className={hasError ? `${form.input} ${form.error}` : form.input}
                                        as='textarea'
                                        id='inputMessage'
-                                       name='message'
-                                       />
+                                       name='message'/>
                                 {hasError ? <div className={form.errorMessage}>{errors.message}</div> : null}
                             </div>
                             <div className={form.buttonBlock}>

@@ -2,8 +2,7 @@
 import {authMeAPI} from "../api/api";
 
 const SET_AUTH_USER_DATA = 'SET_AUTH_USER_DATA'
-const NOT_AUTH = 'NOT_AUTH'
-const GO_OUT = 'GO_OUT'
+const RESET_STATE = 'RESET_STATE'
 
 
 let initialState = {
@@ -15,20 +14,13 @@ let initialState = {
 
 let reducerAuth = (state = initialState, action) => {
     switch (action.type) {
-        case SET_AUTH_USER_DATA: {
+        case SET_AUTH_USER_DATA:
             return {
                 ...state,
                 ...action.data,
                 isAuth: true,
             }
-        }
-        // case NOT_AUTH: {
-        //     return {
-        //         ...state,
-        //         isAuth: false,
-        //     }
-        // }
-        case GO_OUT: {
+        case RESET_STATE:
             return {
                 ...state,
                 id: null,
@@ -36,9 +28,6 @@ let reducerAuth = (state = initialState, action) => {
                 email: null,
                 isAuth: false,
             }
-        }
-
-
         default:
             return state
     }
@@ -46,46 +35,32 @@ let reducerAuth = (state = initialState, action) => {
 
 
 //Action Create
-export const setAuthUserDataAC = (id, login, email) => {
-    return {type: SET_AUTH_USER_DATA, data: {id, login, email}}
-}
-// export const setNotAuthAC = () => ({type: NOT_AUTH})
-export const goOutAC = () => ({type: GO_OUT})
+export const setAuthUserDataAC = (id, login, email) => ({type: SET_AUTH_USER_DATA, data: {id, login, email}})
+export const resetAC = () => ({type: RESET_STATE})
 
 
 //Thunk Create
-export const getAuthMeTC = () => {
-    return (dispatch) => {
-          return authMeAPI.getAuthMe()
-            .then((data) => {
-                if (data.resultCode === 0) {
-                    let {id, login, email} = data.data
-                    dispatch(setAuthUserDataAC(id, login, email))
-                }
-                // else if (data.resultCode === 1) {
-                //     dispatch(setNotAuthAC())
-                // }
-            })
-    }
-}
-export const authLoginTC = (object, setStatus, setSubmitting) => {
-    return (dispatch) => {
-        authMeAPI.postAuthLogin(object)
-            .then((data) => {
-                if (data.resultCode === 0) {
-                    dispatch(getAuthMeTC())
-                } else { setStatus(data.messages) };
+export const getAuthMeTC = () => async (dispatch) => {
+    let data = await authMeAPI.getAuthMe()
 
-                setSubmitting(false);
-            })
+    if (data.resultCode === 0) {
+        let {id, login, email} = data.data
+        dispatch(setAuthUserDataAC(id, login, email))
     }
 }
-export const authOutLoginTC = () => {
-    return (dispatch) => {
-        authMeAPI.deleteAuthLogin()
-            .then(() => {
-                dispatch(goOutAC())
-            })
+
+export const logInTC = (object, setStatus, setSubmitting) => async (dispatch) => {
+    let data = await authMeAPI.postAuthLogin(object)
+    if (data.resultCode === 0) {
+        dispatch(getAuthMeTC())
+    } else {
+        setStatus(data.messages)
     }
+    setSubmitting(false);
+}
+
+export const logOutTC = () => async (dispatch) => {
+    await authMeAPI.deleteAuthLogin()
+    dispatch(resetAC())
 }
 export default reducerAuth

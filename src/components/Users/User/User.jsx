@@ -7,17 +7,17 @@ const User = (props) => {
         <div className={style.prew}>
             <NavLink to={`/profile/${props.user.id}`} className={style.image}>
                 <img
-                    src={props.user.photos.small !== null ? props.user.photos.small : 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSo7WfE6wFfdpeFph92LdEFJFnula0ecIObiQ&usqp=CAU"'}/>
+                    src={props.user.photos.small !== null ? props.user.photos.small :'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSo7WfE6wFfdpeFph92LdEFJFnula0ecIObiQ&usqp=CAU"'}/>
             </NavLink>
             {props.user.followed
                 ? <button
                     disabled={props.followingProcessOnUsers.includes(props.user.id)}
-                    onClick={() => {props.followUserThunk(props.user.id)}}
+                    onClick={() => {props.followUserTC(props.user.id)}}
                     className={style.button}
                     type='button'>Unfollow</button>
                 : <button
                     disabled={props.followingProcessOnUsers.includes(props.user.id)}
-                    onClick={() => { props.unFollowUserThunk(props.user.id)}}
+                    onClick={() => { props.unFollowUserTC(props.user.id)}}
                     className={style.button}
                     type='button'>Follow</button>
             }

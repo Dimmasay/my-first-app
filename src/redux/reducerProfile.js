@@ -2,6 +2,7 @@
 import {profileAPI} from "../api/api";
 
 const ADD_POST = 'ADD_POST'
+const DELETE_POST = 'DELETE_POST'
 const SET_USER = 'SET_USER'
 const SET_STATUS = 'SET_STATUS'
 
@@ -31,6 +32,11 @@ const reducerProfile = (state = initialState, action) => {
                     }
                 ]
             }
+        case DELETE_POST:
+            return {
+                ...state,
+                posts: state.posts.filter(p => p.id !== action.postId)
+            }
         case SET_USER:
             return {...state, user: action.currentUser}
         case SET_STATUS:
@@ -43,36 +49,24 @@ const reducerProfile = (state = initialState, action) => {
 
 //Action Creator
 export const addPostAC = (text) => ({type: ADD_POST, post: text})
+export const deletePostAC = (id) => ({type: DELETE_POST, postId: id})
 export const setUserProfileAC = (user) => ({type: SET_USER, currentUser: user})
 export const setStatusAC = (status) => ({type: SET_STATUS, status: status})
 
 //Thunk Creator
-export const getProfileUserTC = (userId) => {
-    return (dispatch) => {
-        profileAPI.getProfileUser(userId)
-            .then((response) => {
-                dispatch(setUserProfileAC(response.data))
-            })
+export const getProfileUserTC = (userId) => async (dispatch) => {
+    let response = await profileAPI.getProfileUser(userId)
+    dispatch(setUserProfileAC(response.data))
+}
+export const getStatusTC = (userId) => async (dispatch) => {
+    let response = await profileAPI.getStatus(userId)
+    dispatch(setStatusAC(response.data))
+}
+export const updateStatusTC = (status) => async (dispatch) => {
+    let response = await profileAPI.updateStatus(status)
+    if (response.data.resultCode === 0) {
+        dispatch(setStatusAC(status))
     }
 }
-export const getStatusTC = (userId) => {
-    return (dispatch) => {
-        profileAPI.getStatus(userId)
-            .then((response) => {
-                dispatch(setStatusAC(response.data))
-            })
-    }
-}
-export const updateStatusTC = (status) => {
-    return (dispatch) => {
-        profileAPI.updateStatus(status)
-            .then((response) => {
-                if (response.data.resultCode === 0) {
-                    dispatch(setStatusAC(status))
-                }
-            })
-    }
-}
-
 
 export default reducerProfile

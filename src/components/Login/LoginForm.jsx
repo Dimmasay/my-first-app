@@ -13,11 +13,11 @@ const LoginForm = (props) => {
     }
 
     const submit = (state, onSubmitProps) => {
-        props.authLoginTC(state, onSubmitProps.setStatus, onSubmitProps.setSubmitting)
+        props.logInTC(state, onSubmitProps.setStatus, onSubmitProps.setSubmitting)
         onSubmitProps.setSubmitting(true);
     }
-    const goOut = () => {
-        props.authOutLoginTC()
+    const logOut = () => {
+        props.logOutTC()
     }
 
     const validationSchema = Yup.object().shape({
@@ -78,7 +78,6 @@ const LoginForm = (props) => {
                         )
                     }}
                 </Formik>
-
             </div>
         )
     } else {
@@ -89,7 +88,7 @@ const LoginForm = (props) => {
                     <img src='https://ipio-books.com/wp-content/uploads/2018/03/success-icon.png'/>
                 </div>
                 <div className={style.buttonOut}>
-                    <button onClick={goOut}>Go Out</button>
+                    <button onClick={logOut}>Go Out</button>
                 </div>
             </div>
         )

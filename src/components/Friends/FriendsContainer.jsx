@@ -30,8 +30,7 @@ const mapStateToProps = (state) => {
 
 const FriendsContainer = compose(
     connect(mapStateToProps, {
-        setMyFollowersTC,
-        setCurrentPageTC,
+        setMyFollowersTC, setCurrentPageTC,
     }),
     withAuthRedirect
 )(FriendsWrapper)

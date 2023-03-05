@@ -11,7 +11,7 @@ import NavBarContainer from "./components/NavBar/NavBarContainer";
 import LoginContainer from "./components/Login/LoginContainer";
 import DialogsContainer from "./components/Dialogs/DialogsContainer";
 import {connect} from "react-redux";
-import {initializedAppTC, initializedTC} from "./redux/reducerApp";
+import {initializedAppTC} from "./redux/reducerApp";
 import React from "react";
 
 
