@@ -9,40 +9,46 @@ import HeaderContainer from "./components/Header/HeaderContainer";
 import FriendsContainer from "./components/Friends/FriendsContainer";
 import NavBarContainer from "./components/NavBar/NavBarContainer";
 import LoginContainer from "./components/Login/LoginContainer";
-import DialogsContainer from "./components/Dialogs/DialogsContainer";
 import {connect} from "react-redux";
 import {initializedAppTC} from "./redux/reducerApp";
-import React from "react";
+import React, {Suspense, useEffect} from "react";
+;
+
+const DialogsContainer = React.lazy(() => import('./components/Dialogs/DialogsContainer'));
 
 
-class App extends React.Component {
-    componentDidMount() {
-        this.props.initializedAppTC()
-    }
+const App = (props) => {
 
-    render() {
-        if (this.props.initialized) {
-            return (
-                <BrowserRouter>
-                    <div className='app-wrapper'>
-                        <HeaderContainer/>
-                        <NavBarContainer/>
-                        <div className='app-wrapper-content'>
-                            <Routes>
-                                <Route path='/profile/:userId?' element={<ProfileContainer/>}/>
-                                <Route path='/dialogs/*' element={<DialogsContainer/>}/>
-                                <Route path='/news' element={<News/>}/>
-                                <Route path='/login' element={<LoginContainer/>}/>
-                                <Route path='/music' element={<Music/>}/>
-                                <Route path='/settings' element={<Settings/>}/>
-                                <Route path='/friends' element={<FriendsContainer/>}/>
-                                <Route path='/users' element={<UsersContainer/>}/>
-                            </Routes>
-                        </div>
+    useEffect(() => {
+        props.initializedAppTC()
+    }, [])
+
+
+    if (props.initialized) {
+        return (
+            <BrowserRouter>
+                <div className='app-wrapper'>
+                    <HeaderContainer/>
+                    <NavBarContainer/>
+                    <div className='app-wrapper-content'>
+                        <Routes>
+                            <Route path='/profile/:userId?' element={<ProfileContainer/>}/>
+                            <Route path='/dialogs/*' element={
+                                <Suspense fallback={<div>Завантаження...</div>}>
+                                    <DialogsContainer/>
+                                </Suspense>
+                            }/>
+                            <Route path='/news' element={<News/>}/>
+                            <Route path='/login' element={<LoginContainer/>}/>
+                            <Route path='/music' element={<Music/>}/>
+                            <Route path='/settings' element={<Settings/>}/>
+                            <Route path='/friends' element={<FriendsContainer/>}/>
+                            <Route path='/users' element={<UsersContainer/>}/>
+                        </Routes>
                     </div>
-                </BrowserRouter>
-            )
-        }
+                </div>
+            </BrowserRouter>
+        )
     }
 }
 

@@ -1,5 +1,5 @@
 //Action Type
-const ADD_MESSAGE = 'ADD_MESSAGE'
+const ADD_MESSAGE = '/reducerDialogs/ADD_MESSAGE'
 
 
 //Starting value state

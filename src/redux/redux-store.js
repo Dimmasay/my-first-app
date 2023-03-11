@@ -7,7 +7,7 @@ import reducerAuth from "./reducerAuth";
 import thunkMiddleware from "redux-thunk";
 import reducerFriends from "./reducerFriends";
 import reducerApp from "./reducerApp";
-
+import { composeWithDevTools } from 'redux-devtools-extension';
 
 
 let reducers = combineReducers({
@@ -20,7 +20,17 @@ let reducers = combineReducers({
     app: reducerApp
 })
 
-let store = legacy_createStore(reducers, applyMiddleware(thunkMiddleware))
+
+
+
+const store = legacy_createStore(
+    reducers,
+    composeWithDevTools(
+        applyMiddleware(thunkMiddleware)
+    )
+);
+
+
 
 window.store = store
 export default store

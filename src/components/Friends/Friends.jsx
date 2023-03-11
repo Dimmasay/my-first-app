@@ -5,7 +5,7 @@ import React from "react";
 
 
 const Friends = (props) => {
-    let userList = props.followers.map((user) => {
+    let friendList = props.followers.map((user) => {
         return (
             <Friend user={user}/>
         )
@@ -19,7 +19,7 @@ const Friends = (props) => {
                         page={props.page}
                         setPage={props.setPage}
             />
-            {userList}
+            {friendList}
         </div>
     )
 

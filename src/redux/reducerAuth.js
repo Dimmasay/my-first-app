@@ -1,8 +1,8 @@
 //Action Type
 import {authMeAPI} from "../api/api";
 
-const SET_AUTH_USER_DATA = 'SET_AUTH_USER_DATA'
-const RESET_STATE = 'RESET_STATE'
+const SET_AUTH_USER_DATA = '/reducerAuth/SET_AUTH_USER_DATA'
+const RESET_STATE = '/reducerAuth/RESET_STATE'
 
 
 let initialState = {

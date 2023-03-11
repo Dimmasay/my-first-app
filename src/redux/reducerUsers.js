@@ -3,8 +3,6 @@ import {usersAPI, usersAPI as userAPI} from "../api/api";
 
 //Action Types
 const FOLLOW_UNFOLLOW = '/reducerUsers/FOLLOW_UNFOLLOW'
-// const FOLLOW = '/reducerUsers/FOLLOW'
-// const UNFOLLOW = '/reducerUsers/UNFOLLOW'
 const SET_USERS = '/reducerUsers/SET_USERS'
 const SET_TOTAL_COUNT = '/reducerUsers/SET_TOTAL_COUNT'
 const SET_CURRENT_PAGE = '/reducerUsers/SET_CURRENT_PAGE'
@@ -14,9 +12,9 @@ const FOLLOWING_PROCESS = '/reducerUsers/FOLLOWING_PROCESS'
 
 //Starting value state
 let initialState = {
-    users: [],         //Total items
-    totalCount: 0,     //Items on current page
-    count: 10,         //Current page
+    users: [],
+    totalCount: 0,
+    count: 7,
     page: 1,
     isFetching: true,
     followingProcessOnUsers: [],

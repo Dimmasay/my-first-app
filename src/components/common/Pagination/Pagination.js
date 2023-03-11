@@ -1,15 +1,36 @@
 import style from './Pagination.module.css'
-import React from "react";
+import {useEffect, useState} from "react";
+// import React, {useEffect, useState} from "react";
 
 const Pagination = (props) => {
 
+    //totalCount is value all Users
+    //count is value users on page
+
+    let portionSize = 10
+
     let totalPages = Math.ceil(props.totalCount / props.count)
     let arrayNumbers = []
-    //50 = totalPages !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-    for (let p = 1; p <= totalPages && p <= 50; ++p) {
+
+    let [portionNumber, setPortionNumber] = useState(1)
+    useEffect(()=>{
+        props.setPage(leftLimitNumber)
+    },[portionNumber])
+
+    let leftLimitNumber = (portionNumber - 1) * portionSize + 1
+    let rightLimitNumber = portionNumber * portionSize
+
+    for (let p = 1; p <= totalPages; ++p) {
         arrayNumbers.push(p)
     }
-    let arrayPageNumbers = arrayNumbers.map((page => {
+
+    let arrayPageNumbers = arrayNumbers
+        .filter((page) => {
+            if(page >= leftLimitNumber && page <= rightLimitNumber){
+                return page
+            }
+        })
+        .map((page => {
         return (<div
                 className={props.page === page
                     ? `${style.pageNumber} ${style.pageNumberSelected}`
@@ -19,23 +40,30 @@ const Pagination = (props) => {
                 }}>{page}</div>
         )
     }))
-    let setNextPage = () => {
-        if (props.page < totalPages) {
-            let currentPage = props.page + 1
-            props.setPage(currentPage)
-        }
 
+
+
+
+
+
+    let setNextPage = () => {props.setPage(props.page + 1)}
+    let setPrevPage = () => {props.setPage(props.page - 1)}
+    let setNextPortion = () => {
+        setPortionNumber(portionNumber + 1)
+        props.setPage(leftLimitNumber)
     }
-    let setPrevPage = () => {
-        if (1 < props.page) {
-            let currentPage = props.page - 1
-            props.setPage(currentPage)
-        }
+    let setPrevPortion = () => {
+        setPortionNumber(portionNumber - 1)
+        props.setPage(leftLimitNumber)
     }
 
     return (
         <div className={style.pagination}>
             <div className={style.container}>
+                <button className={style.button}
+                        onClick={setPrevPortion}
+                >Prev 10
+                </button>
                 <button className={style.button}
                         onClick={setPrevPage}>Prev
                 </button>
@@ -44,6 +72,10 @@ const Pagination = (props) => {
                 </div>
                 <button className={style.button}
                         onClick={setNextPage}>Next
+                </button>
+                <button className={style.button}
+                        onClick={setNextPortion}
+                >Next 10
                 </button>
             </div>
         </div>

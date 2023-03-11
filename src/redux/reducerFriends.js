@@ -1,9 +1,9 @@
 import {usersAPI as userAPI} from "../api/api";
 
 //Action Type
-const SET_MY_FOLLOWERS = 'SET_MY_FOLLOWERS'
-const SET_TOTAL_COUNT_FOLLOWERS = 'SET_TOTAL_COUNT_FOLLOWERS'
-const SET_PAGE_COUNT = 'SET_PAGE_COUNT'
+const SET_MY_FOLLOWERS = '/reducerFriends/SET_MY_FOLLOWERS'
+const SET_TOTAL_COUNT_FOLLOWERS = '/reducerFriends/SET_TOTAL_COUNT_FOLLOWERS'
+const SET_PAGE_COUNT = '/reducerFriends/SET_PAGE_COUNT'
 
 
 let initialState = {

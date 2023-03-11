@@ -1,10 +1,10 @@
 //Action Type
 import {profileAPI} from "../api/api";
 
-const ADD_POST = 'ADD_POST'
-const DELETE_POST = 'DELETE_POST'
-const SET_USER = 'SET_USER'
-const SET_STATUS = 'SET_STATUS'
+const ADD_POST = '/reducerProfile/ADD_POST'
+const DELETE_POST = '/reducerProfile/DELETE_POST'
+const SET_USER = '/reducerProfile/SET_USER'
+const SET_STATUS = '/reducerProfile/SET_STATUS'
 
 
 //Starting value state
