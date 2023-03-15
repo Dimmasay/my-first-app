@@ -40,10 +40,14 @@
 }
 
 .button button {
+    background-color: cadetblue;
     border-radius: 15px;
     padding: 10px 50px;
 }
 
+.button button:active{
+    border: 3px red solid;
+}
 .input {
     font-size: 18px;
     padding: 5px 10px;

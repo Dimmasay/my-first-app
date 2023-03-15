@@ -12,6 +12,7 @@ import LoginContainer from "./components/Login/LoginContainer";
 import {connect} from "react-redux";
 import {initializedAppTC} from "./redux/reducerApp";
 import React, {Suspense, useEffect} from "react";
+
 ;
 
 const DialogsContainer = React.lazy(() => import('./components/Dialogs/DialogsContainer'));
@@ -26,7 +27,7 @@ const App = (props) => {
 
     if (props.initialized) {
         return (
-            <BrowserRouter>
+            <BrowserRouter basename={process.env.PUBLIC_URL}>
                 <div className='app-wrapper'>
                     <HeaderContainer/>
                     <NavBarContainer/>

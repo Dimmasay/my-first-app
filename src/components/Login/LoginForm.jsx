@@ -70,7 +70,6 @@ const LoginForm = (props) => {
                                     />
                                 </div>
                                 <div className={style.button}>
-
                                     <button disabled={!isValid} type="submit">Submit</button>
                                 </div>
                                 <div className={style.errorForm}>{status}</div>

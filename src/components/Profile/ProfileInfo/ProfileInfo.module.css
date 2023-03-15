@@ -44,6 +44,17 @@
     margin-bottom: 30px;
 }
 
+.avatar{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.photoInput{
+    padding: 5px 10px;
+}
+
 .photo {
     position: relative;
     height: 150px;

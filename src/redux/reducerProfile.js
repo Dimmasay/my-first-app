@@ -5,6 +5,7 @@ const ADD_POST = '/reducerProfile/ADD_POST'
 const DELETE_POST = '/reducerProfile/DELETE_POST'
 const SET_USER = '/reducerProfile/SET_USER'
 const SET_STATUS = '/reducerProfile/SET_STATUS'
+const SAVE_PHOTOS_SUCCESS = '/reducerProfile/SAVE_PHOTOS_SUCCESS'
 
 
 //Starting value state
@@ -41,6 +42,8 @@ const reducerProfile = (state = initialState, action) => {
             return {...state, user: action.currentUser}
         case SET_STATUS:
             return {...state, status: action.status}
+        case SAVE_PHOTOS_SUCCESS:
+            return {...state, user: {...state.user, photos:action.photos}}
 
         default:
             return state
@@ -52,6 +55,7 @@ export const addPostAC = (text) => ({type: ADD_POST, post: text})
 export const deletePostAC = (id) => ({type: DELETE_POST, postId: id})
 export const setUserProfileAC = (user) => ({type: SET_USER, currentUser: user})
 export const setStatusAC = (status) => ({type: SET_STATUS, status: status})
+export const savePhotosSuccess = (photos) => ({type: SAVE_PHOTOS_SUCCESS, photos})
 
 //Thunk Creator
 export const getProfileUserTC = (userId) => async (dispatch) => {
@@ -66,6 +70,12 @@ export const updateStatusTC = (status) => async (dispatch) => {
     let response = await profileAPI.updateStatus(status)
     if (response.data.resultCode === 0) {
         dispatch(setStatusAC(status))
+    }
+}
+export const updatePhotoTC = (file) => async (dispatch) => {
+    let response = await profileAPI.updatePhoto(file)
+    if (response.data.resultCode === 0) {
+        dispatch(savePhotosSuccess(response.data.data.photos))
     }
 }
 

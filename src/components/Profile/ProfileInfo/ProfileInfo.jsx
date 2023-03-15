@@ -1,10 +1,16 @@
 import style from "./ProfileInfo.module.css";
 import preloader from '../../../files/images/preloader.gif'
-import ProfileStatus from "../ProfileStatus";
-import {updateStatusTC} from "../../../redux/reducerProfile";
 import ProfileStatusWithHooks from "../ProfileStatusWithHooks";
+import {useEffect} from "react";
+import {updatePhotoTC} from "../../../redux/reducerProfile";
 
 const ProfileInfo = (props) => {
+    let currentIdNumber = parseInt(props.currentIdProfile)
+
+    const onAddedPhoto = (e) => {
+        props.updatePhotoTC(e.currentTarget.files[0])
+    }
+
     if (!props.user) {
         return (
             <div className={style.preloader}>
@@ -20,8 +26,14 @@ const ProfileInfo = (props) => {
                 </div>
             </div>
             <div className={style.person}>
-                <div className={style.photo}>
-                    <img src={props.user.photos.small}/>
+                <div className={style.avatar}>
+                    <div className={style.photo}>
+                        <img
+                            src={props.user.photos.small || 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSo7WfE6wFfdpeFph92LdEFJFnula0ecIObiQ&usqp=CAU"'}/>
+                    </div>
+                    <div className={style.photoInput}>
+                        {props.id === currentIdNumber ? <input type='file' onChange={onAddedPhoto}/> : null}
+                    </div>
                 </div>
                 <div className={style.body}>
                     <div className={style.name}>{props.user.fullName}</div>
