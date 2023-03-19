@@ -78,5 +78,14 @@ export const updatePhotoTC = (file) => async (dispatch) => {
         dispatch(savePhotosSuccess(response.data.data.photos))
     }
 }
+export const updateProfileTC = (profile, setStatus) => async (dispatch) => {
+    let response = await profileAPI.updateProfile(profile)
+    if (response.data.resultCode === 0) {
+        dispatch(getProfileUserTC(profile.userId))
+    } else {
+        setStatus(response.data.messages)
+        return Promise.reject(response.data.messages)
+    }
+}
 
 export default reducerProfile

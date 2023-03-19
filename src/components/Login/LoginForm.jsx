@@ -4,12 +4,12 @@ import {Formik, Field, Form} from 'formik';
 import * as Yup from "yup";
 
 
-
 const LoginForm = (props) => {
     let state = {
         email: '',
         password: '',
         rememberMe: false,
+        captcha: ''
     }
 
     const submit = (state, onSubmitProps) => {
@@ -69,10 +69,21 @@ const LoginForm = (props) => {
                                     <Field id="rememberMe" name="rememberMe" type="checkbox"
                                     />
                                 </div>
+
+                                <div className={style.errorForm}>{status}</div>
+                                <div className={style.captchaBlock}>
+                                    {props.captcha &&
+                                        <div className={`${style.captcha} ${style.block}`}>
+                                            <img src={props.captcha}/>
+                                            <label htmlFor="captchaInput">Enter symbols</label>
+                                            <Field id="captchaInput" name="captcha"
+                                            />
+                                        </div>}
+
+                                </div>
                                 <div className={style.button}>
                                     <button disabled={!isValid} type="submit">Submit</button>
                                 </div>
-                                <div className={style.errorForm}>{status}</div>
                             </Form>
                         )
                     }}
@@ -92,8 +103,6 @@ const LoginForm = (props) => {
             </div>
         )
     }
-
-
 }
 
 

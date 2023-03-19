@@ -1,8 +1,9 @@
 //Action Type
-import {authMeAPI} from "../api/api";
+import {authMeAPI, securityAPI} from "../api/api";
 
 const SET_AUTH_USER_DATA = '/reducerAuth/SET_AUTH_USER_DATA'
 const RESET_STATE = '/reducerAuth/RESET_STATE'
+const SET_CAPTCHA = '/reducerAuth/SET_CAPTCHA'
 
 
 let initialState = {
@@ -10,6 +11,7 @@ let initialState = {
     login: null,
     email: null,
     isAuth: false,
+    captcha: null
 }
 
 let reducerAuth = (state = initialState, action) => {
@@ -27,6 +29,12 @@ let reducerAuth = (state = initialState, action) => {
                 login: null,
                 email: null,
                 isAuth: false,
+                captcha: null,
+            }
+            case SET_CAPTCHA:
+            return {
+                ...state,
+                captcha: action.captchaUrl
             }
         default:
             return state
@@ -37,6 +45,7 @@ let reducerAuth = (state = initialState, action) => {
 //Action Create
 export const setAuthUserDataAC = (id, login, email) => ({type: SET_AUTH_USER_DATA, data: {id, login, email}})
 export const resetAC = () => ({type: RESET_STATE})
+export const setCaptchaAC = (captchaUrl) => ({type: SET_CAPTCHA, captchaUrl})
 
 
 //Thunk Create
@@ -54,6 +63,9 @@ export const logInTC = (object, setStatus, setSubmitting) => async (dispatch) =>
     if (data.resultCode === 0) {
         dispatch(getAuthMeTC())
     } else {
+        if(data.resultCode === 10){
+            dispatch(getCaptchaTC())
+        }
         setStatus(data.messages)
     }
     setSubmitting(false);
@@ -63,4 +75,10 @@ export const logOutTC = () => async (dispatch) => {
     await authMeAPI.deleteAuthLogin()
     dispatch(resetAC())
 }
+
+export const getCaptchaTC = () =>  async (dispatch) => {
+    let captcha = await securityAPI.getCaptcha()
+    dispatch(setCaptchaAC(captcha))
+}
+
 export default reducerAuth

@@ -8,7 +8,7 @@ import PostsForm from "./PostsForm";
 const Posts = (props) => {
     let currentPosts = [...props.posts]
         .reverse()
-        .map((post) =><Post message={post.message} like={post.like} id={post.id}/>)
+        .map((post) =><Post key={post.id} message={post.message} like={post.like} id={post.id}/>)
 
     return (
         <div className={posts}>

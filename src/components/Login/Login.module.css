@@ -103,11 +103,8 @@
     padding: 10px 50px;
 }
 
-.errorForm{
-    padding-top: 15px;
-    text-align: center;
-    color: red;
-    font-weight: 600;
-
+.captcha{
+    display: flex;
+    flex-direction: column;
 }
 

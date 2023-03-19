@@ -1,6 +1,7 @@
 import profile from "./Profile.module.css";
 import ProfileInfo from "./ProfileInfo/ProfileInfo";
 import PostsContainer from "./Posts/PostsContainer";
+import {updateProfileTC} from "../../redux/reducerProfile";
 
 
 
@@ -8,12 +9,13 @@ const Profile = (props) => {
 
     return (
         <div className={profile.profile__wrapper}>
-            <ProfileInfo currentIdProfile = {props.currentIdProfile}
+            <ProfileInfo isOwner = {props.isOwner}
                          user={props.user}
                          status={props.status}
+                         id={props.id}
                          updateStatusTC={props.updateStatusTC}
                          updatePhotoTC={props.updatePhotoTC}
-                         id={props.id}
+                         updateProfileTC={props.updateProfileTC}
             />
             <PostsContainer />
         </div>

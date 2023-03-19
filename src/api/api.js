@@ -59,6 +59,9 @@ export const profileAPI = {
             }
         })
     },
+    updateProfile: (profile) => {
+        return instance.put(`/profile/`, profile)
+    },
 
 
 }
@@ -81,6 +84,14 @@ export const authMeAPI = {
         return instance.delete(`auth/login`)
             .then((response) => {
                 return response.data
+            })
+    }
+}
+export const securityAPI = {
+    getCaptcha: () => {
+        return instance.post('/security/get-captcha-url')
+            .then((response)=>{
+                return response.data.url
             })
     }
 }
